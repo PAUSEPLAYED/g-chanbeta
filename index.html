@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./xbutton.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/xbutton.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script type="module" src="src/cookie.js"></script> -->
+
+    <title>G-chan beta</title>
+    <script type="module" crossorigin src="./entry/main.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+  </head>
+
+  <body class="relative bg-neutral-400 dark:bg-neutral-700 scrollbar-hide">
+    <!-- <div id="app"></div>
+    <script type="module" src="/main.js"></script> -->
+    <!-- data-drawer-backdrop="false" -->
+
+    <div
+      class="sm:pb-[500px] md:pb-[300px] xl:pb-[300px] flex justify-center items-center min-h-screen flex-col focus:outline-none"
+    >
+      <div
+        id="wrapper"
+        class="relative flex justify-items-stretch z-1 h-[500px] w-[500px]"
+      >
+        <div
+          id="background"
+          class="absolute bg-center -mt-[16px] scale-[1.6] max-w-full mx-auto h-[500px] w-full bg-no-repeat ease-out duration-300"
+        ></div>
+        <div
+          onclick="toggleRefresh()"
+          id="refresh"
+          class="absolute bg-center h-[500px] w-[500px] cursor-pointer"
+        ></div>
+        <!--BG IMPLEMENT-->
+      </div>
+      <div id="searchbar" class="w-full md:max-w-[600px]">
+        <form
+          action=""
+          class="relative rounded-full group block bg-neutral-800"
+        >
+          <!--  search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg) -->
+          <input
+            id="searchform"
+            type="search"
+            class="w-full h-14 cursor-text rounded-full pl-16 pr-8 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg)]"
+            placeholder="Search G-chan or type a Waifu"
+          />
+          <button
+            id="settings-button"
+            type="button"
+            class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
+          >
+            <svg
+              onclick="toggleSlideover()"
+              xmlns="http://www.w3.org/2000/svg"
+              class="cursor-pointer"
+              fill="currentColor"
+              viewBox="0 0 19 19"
+              data-drawer-target="drawernavi"
+              data-drawer-show="drawernavi"
+              aria-controls="drawernavi"
+              data-drawer-backdrop="false"
+            >
+              <path
+                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+              />
+            </svg>
+          </button>
+          <button
+            type="reset"
+            class="absolute pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full group-focus:bg-neutral-500 dark:text-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+          >
+            <svg
+              id="magnify"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 30 30"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-label="Reset"
+            >
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- drawer component -->
+    <div class="flex" id="accordion-open" data-accordion="open">
+      <!-- class="fixed -->
+      <div
+        id="slideover-container"
+        class="w-screen h-screen fixed inset-0 invisible"
+      >
+        <div
+          onclick="toggleSlideover()"
+          id="slideover-bg"
+          class="absolute bg-neutral-900/20 dark:bg-neutral-900/10 inset-0 z-30"
+          data-drawer-hide="drawernavi"
+          aria-controls="drawernavi"
+        ></div>
+      </div>
+      <div
+        id="drawernavi"
+        class="absolute top-0 h-screen md:left-0 xl:left-40 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 p-4 sm:w-2/3 md:w-[400px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
+        tabindex="1"
+        aria-labelledby="drawernavi-label"
+      >
+        <h5
+          id="drawernavi-label"
+          class="text-base ml-8 font-semibold text-neutral-900 dark:text-neutral-400 uppercase"
+        >
+          <br /><br />
+          G-chan Beta<br />
+          by PausePLay
+          <br /><br /><br />
+        </h5>
+        <button
+          onclick="toggleSlideover()"
+          type="button"
+          data-drawer-hide="drawernavi"
+          aria-controls="drawernavi"
+          class="absolute bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 top-7 right-7 inline-flex items-center z-[50]"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-[40px] h-[40px]"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+          <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
+          <ul class="relative space-y-2 font-medium p-4">
+            <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+              <li>
+                <button
+                  type="button"
+                  class="flex items-center w-full p-2 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                >
+                  <!--                   aria-controls="dropdown-container11"
+                  data-collapse-toggle="dropdown-container11" -->
+                  <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                    >Settings</span
+                  >
+                  <svg
+                    class="w-3 h-3 mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
+                <ul id="dropdown-container11" class="py-2 space-y-2">
+                  <!-- hidden -->
+                  <li>
+                    <div class="relative flex items-center">
+                      <div
+                        class="ml-5 rounded-full bg-neutral-300 w-20 cursor-pointer toggler dark:bg-neutral-700"
+                      >
+                        <div
+                          class="rounded-full bg-white w-10 h-10 scale-75 transition-transform dark:bg-neutral-900"
+                        ></div>
+                      </div>
+                      <span
+                        class="text-neutral-900 transition duration-75 rounded-full group dark:text-white ml-5"
+                        >Dark Mode</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="relative flex items-center">
+                      <div
+                        id="randomizebutton"
+                        class="ml-5 rounded-full bg-neutral-300 w-20 cursor-pointer dark:bg-neutral-700 checked:"
+                      >
+                        <div
+                          id="randomcircle"
+                          class="rounded-full bg-white w-10 h-10 scale-75 transition-transform dark:bg-neutral-900"
+                        ></div>
+                      </div>
+                      <span
+                        class="text-neutral-900 transition duration-75 rounded-full group dark:text-white ml-5"
+                        >Randomize Animation</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </div>
+            <br /><br /><br />
+            <div
+              class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20 cursor-pointer"
+            >
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container1"
+                  data-collapse-toggle="dropdown-container1"
+                >
+                  <span class="absolute left-0 ml-5">Hololive Vtuber/s</span>
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >1</span
+                  >
+                </button>
+                <ul id="dropdown-container1" class="hidden py-2 space-y-2">
+                  <div id="bg-images" data-number="6">
+                    <li data-id="22" data-sef="googlbounce" class="bg">
+                      <img src="./media/Kureiji_Ollie.gif" />
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </div>
+            <div
+              class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20 cursor-pointer"
+            >
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                  aria-controls="dropdown-container2"
+                  data-collapse-toggle="dropdown-container2"
+                >
+                  <span class="absolute left-0 ml-5">EN Vtubers Animation</span>
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >5</span
+                  >
+                </button>
+                <ul id="dropdown-container2" class="hidden py-2 space-y-2">
+                  <div id="bg-images" data-number="6" class="group">
+                    <li data-id="1" data-sef="googlbounce" class="bg">
+                      <img src="./media/Melody.gif" />
+                      <!-- <div
+                                                data-tooltip-target="tooltip-hover"
+                        data-tooltip-trigger="hover"
+                        data-tooltip-trigger="click"
+
+                        
+                        id="tooltip-hover"
+                        role="tooltip"
+                        class="-mt-10 left-0 z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                      >
+                        Melody
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                      </div> -->
+                    </li>
+                    <li data-id="2" data-sef="googlbounce" class="bg">
+                      <img src="./media/Cerberus.gif" />
+                    </li>
+                    <li data-id="3" data-sef="googlbounce" class="bg">
+                      <img src="./media/Lich.gif" />
+                    </li>
+                    <li data-id="4" data-sef="googlbounce" class="bg">
+                      <img src="./media/VeiBae.gif" />
+                    </li>
+                    <li data-id="5" data-sef="googlbounce" class="bg">
+                      <img src="./media/Bunny.gif" />
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </div>
+            <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container3"
+                  data-collapse-toggle="dropdown-container3"
+                >
+                  <span class="absolute left-0 ml-5"
+                    >[Merryweather] Characters</span
+                  >
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >6</span
+                  >
+                </button>
+                <ul id="dropdown-container3" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Billing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Invoice</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </div>
+            <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container4"
+                  data-collapse-toggle="dropdown-container4"
+                >
+                  <span class="absolute left-0 ml-5"
+                    >Internet Waifus Animation</span
+                  >
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >10</span
+                  >
+                </button>
+                <ul id="dropdown-container4" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Billing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Invoice</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </div>
+            <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container5"
+                  data-collapse-toggle="dropdown-container5"
+                >
+                  <span class="absolute left-0 ml-5"
+                    >Derivative Animations ⟠</span
+                  >
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >4</span
+                  >
+                </button>
+                <ul id="dropdown-container5" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Billing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Invoice</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </div>
+            <br /><br /><br />
+            <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container6"
+                  data-collapse-toggle="dropdown-container6"
+                >
+                  <span class="absolute left-0 ml-5">Exclusive Versions</span>
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >1</span
+                  >
+                </button>
+                <ul id="dropdown-container6" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container7"
+                  data-collapse-toggle="dropdown-container7"
+                >
+                  <span class="absolute left-0 ml-5">Version Log</span>
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >1</span
+                  >
+                </button>
+                <ul id="dropdown-container7" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <button
+                  type="button"
+                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
+                  aria-controls="dropdown-container8"
+                  data-collapse-toggle="dropdown-container8"
+                >
+                  <span class="absolute left-0 ml-5">About</span>
+                  <span
+                    class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
+                    >1</span
+                  >
+                </button>
+                <ul id="dropdown-container8" class="hidden py-2 space-y-2">
+                  <li>
+                    <a
+                      href="#"
+                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                      >Products</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- drawer component -->
+
+    <script>
+      let darkMode = localStorage.getItem("darkMode");
+      // Toggle Dark Functionality
+      let flag = true;
+      const toggler = document.querySelector(".toggler");
+      const html = document.documentElement;
+
+      if (darkMode === "null") {
+        toggler.children[0].classList.toggle("translate-x-0");
+        html.classList.remove("dark");
+      }
+      if (darkMode === "enabled") {
+        toggler.children[0].classList.toggle("translate-x-10");
+        html.classList.add("dark");
+        if (flag) {
+          // Toggle Dark Function
+          const toggleDark = () => {
+            toggler.addEventListener("click", () => {
+              toggler.children[0].classList.toggle("translate-x-0");
+              if (flag) {
+                html.classList.remove("dark");
+                localStorage.setItem("darkMode", "null");
+                location.reload();
+              } else {
+                toggler.children[0].classList.toggle("translate-x-0");
+                html.classList.add("dark");
+                localStorage.setItem("darkMode", "enable");
+              }
+              flag = !flag;
+            });
+          };
+          toggleDark();
+        }
+      }
+      if (flag) {
+        // Toggle Dark Function
+        const toggleDark = () => {
+          toggler.addEventListener("click", () => {
+            toggler.children[0].classList.toggle("translate-x-10");
+            if (flag) {
+              html.classList.add("dark");
+              localStorage.setItem("darkMode", "enabled");
+            } else {
+              toggler.children[0].classList.toggle("translate-x-0");
+              html.classList.remove("dark");
+              localStorage.setItem("darkMode", null);
+            }
+            flag = !flag;
+          });
+        };
+        toggleDark();
+      }
+
+      function toggleSlideover() {
+        document
+          .getElementById("slideover-container")
+          .classList.toggle("invisible");
+        // document.getElementById("slideover-bg").classList.toggle("opacity-0");
+        document
+          .getElementById("slideover-bg")
+          .classList.toggle("opacity-[100]");
+        document
+          .getElementById("drawernavi")
+          .classList.toggle("translate-x-full");
+      }
+
+      function toggleRefresh() {
+        location.reload();
+      }
+
+      function myfunction() {
+        var answer = window.orientation > 1;
+        alert(answer ? "It is a mobile device" : "It is not a mobile device");
+      }
+    </script>
+
+    
+
+    <!-- <script src="src\flowbite.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+  </body>
+</html>
