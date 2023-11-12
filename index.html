@@ -21,24 +21,25 @@
     <!-- data-drawer-backdrop="false" -->
 
     <div
-      class="sm:pb-[500px] md:pb-[300px] xl:pb-[300px] flex justify-center items-center min-h-screen flex-col focus:outline-none"
+      class="flex justify-center items-center min-h-screen flex-col focus:outline-none"
     >
+      <!-- sm:pb-[500px] md:pb-[300px] xl:pb-[300px]  -->
       <div
         id="wrapper"
-        class="relative flex justify-items-stretch z-1 h-[500px] w-[500px]"
+        class="relative flex justify-items-center z-1 h-[500px] w-full"
       >
         <div
           id="background"
-          class="absolute bg-center -mt-[16px] scale-[1.6] max-w-full mx-auto h-[500px] w-full bg-no-repeat ease-out duration-300"
+          class="bg-center -mt-[16px] scale-[1.6] mx-auto h-full w-full bg-no-repeat ease-out duration-300"
         ></div>
         <div
           onclick="toggleRefresh()"
           id="refresh"
-          class="absolute bg-center h-[500px] w-[500px] cursor-pointer"
+          class="absolute bg-center h-[500px] w-full cursor-pointer"
         ></div>
         <!--BG IMPLEMENT-->
       </div>
-      <div id="searchbar" class="w-full md:max-w-[600px]">
+      <div id="searchbar" class="w-full sm:w-[100%] md:max-w-[600px]">
         <form
           action=""
           class="relative rounded-full group block bg-neutral-800"
@@ -96,7 +97,7 @@
       <!-- class="fixed -->
       <div
         id="slideover-container"
-        class="w-screen h-screen fixed inset-0 invisible"
+        class="w-full h-full fixed inset-0 invisible cursor-pointer"
       >
         <div
           onclick="toggleSlideover()"
@@ -108,7 +109,7 @@
       </div>
       <div
         id="drawernavi"
-        class="absolute top-0 h-screen md:left-0 xl:left-40 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 p-4 sm:w-2/3 md:w-[400px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
+        class="absolute top-0 h-full md:left-0 xl:left-40 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 p-4 sm:w-4/5 md:w-[400px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
         tabindex="1"
         aria-labelledby="drawernavi-label"
       >
@@ -228,7 +229,7 @@
                 </button>
                 <ul id="dropdown-container1" class="hidden py-2 space-y-2">
                   <div id="bg-images" data-number="6">
-                    <li data-id="22" data-sef="googlbounce" class="bg">
+                    <li data-id="6" data-sef="googlbounce" class="bg">
                       <img src="./media/Kureiji_Ollie.gif" />
                     </li>
                   </div>
