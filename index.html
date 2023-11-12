@@ -21,25 +21,28 @@
     <!-- data-drawer-backdrop="false" -->
 
     <div
-      class="flex justify-center items-center min-h-screen flex-col focus:outline-none"
+      class="flex justify-center items-center md:min-h-screen flex-col focus:outline-none"
     >
       <!-- sm:pb-[500px] md:pb-[300px] xl:pb-[300px]  -->
       <div
         id="wrapper"
-        class="relative flex justify-items-center z-1 h-[500px] w-full"
+        class="relative flex justify-items-center z-1 h-[500px] w-[100%]"
       >
         <div
           id="background"
-          class="bg-center -mt-[16px] scale-[1.6] mx-auto h-full w-full bg-no-repeat ease-out duration-300"
+          class="bg-center md:-mt-[16px] md:scale-[1.6] mx-auto mb:h-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
         ></div>
         <div
           onclick="toggleRefresh()"
-          id="refresh"
           class="absolute bg-center h-[500px] w-full cursor-pointer"
         ></div>
         <!--BG IMPLEMENT-->
       </div>
-      <div id="searchbar" class="w-full sm:w-[100%] md:max-w-[600px]">
+      <div
+        id="searchbar"
+        class="sm:absolute sm:mt-[130px] sm:w-[100%] md:w-[600px]"
+      >
+        <!-- md:max-w-[600px] -->
         <form
           action=""
           class="relative rounded-full group block bg-neutral-800"
@@ -48,7 +51,7 @@
           <input
             id="searchform"
             type="search"
-            class="w-full h-14 cursor-text rounded-full pl-16 pr-8 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg)]"
+            class="sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-8 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg)]"
             placeholder="Search G-chan or type a Waifu"
           />
           <button
@@ -90,6 +93,8 @@
           </button>
         </form>
       </div>
+      <!-- onclick="toggleRefresh()" -->
+      <div id="refresh" class="relative bg-center h-[250px] w-full"></div>
     </div>
 
     <!-- drawer component -->
