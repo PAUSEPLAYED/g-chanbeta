@@ -47,12 +47,14 @@
         <!-- md:max-w-[600px] -->
         <form
           onclick="toggleClear()"
-          action=""
+          action="https://google.com/search"
+          method="get"
           class="relative rounded-full group block bg-neutral-800"
         >
           <!--  search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg) -->
           <input
             id="searchform"
+            name="q"
             type="search"
             class="z-3 sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
             placeholder="Search G-chan or type a Waifu"
@@ -666,6 +668,16 @@
       let flag = true;
       const toggler = document.querySelector(".toggler");
       const html = document.documentElement;
+
+      if (
+        darkMode === "true" ||
+        (!("darkMode" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.querySelector("html").classList.add("dark");
+      } else {
+        document.querySelector("html").classList.remove("dark");
+      }
 
       if (darkMode === "null") {
         toggler.children[0].classList.toggle("translate-x-0");
