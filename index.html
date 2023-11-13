@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="./css/index.css">
   </head>
 
-  <body class="relative bg-neutral-400 dark:bg-neutral-700 scrollbar-hide">
+  <body
+    class="relative bg-neutral-400 dark:bg-neutral-700 scrollbar-hide no_highlights"
+  >
     <!-- <div id="app"></div>
     <script type="module" src="/main.js"></script> -->
     <!-- data-drawer-backdrop="false" -->
@@ -30,20 +32,21 @@
       >
         <div
           id="background"
-          class="bg-center md:-mt-[16px] md:scale-[1.6] mx-auto mb:h-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
+          class="bg-center md:-mt-[16px] md:scale-[1.7] mx-auto mb:h-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
         ></div>
         <div
           onclick="toggleRefresh()"
-          class="absolute bg-center h-[500px] w-full cursor-pointer no-highlights"
+          class="absolute bg-center h-[500px] w-full cursor-pointer"
         ></div>
         <!--BG IMPLEMENT-->
       </div>
       <div
         id="searchbar"
-        class="sm:absolute sm:mt-[130px] sm:w-[100%] md:w-[600px]"
+        class="sm:absolute sm:mt-[130px] sm:w-[100%] md:mt-[20px] md:w-[650px]"
       >
         <!-- md:max-w-[600px] -->
         <form
+          onclick="toggleClear()"
           action=""
           class="relative rounded-full group block bg-neutral-800"
         >
@@ -51,10 +54,11 @@
           <input
             id="searchform"
             type="search"
-            class="sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-8 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg)]"
+            class="z-3 sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
             placeholder="Search G-chan or type a Waifu"
           />
           <button
+            onclick="toggleClear()"
             id="settings-button"
             type="button"
             class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
@@ -75,9 +79,27 @@
               />
             </svg>
           </button>
+
+          <button
+            id="xbutton"
+            type="reset"
+            class="z-1 invisible absolute pt-2 right-1 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
+          >
+            <svg
+              xmlns="/xbutton.svg"
+              fill="currentColor"
+              viewBox="0 0 19 19"
+              aria-label="Reset"
+            >
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+              />
+            </svg>
+          </button>
+
           <button
             type="reset"
-            class="absolute pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full group-focus:bg-neutral-500 dark:text-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+            class="absolute visible z-0 pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full dark:text-neutral-900 text-neutral-400"
           >
             <svg
               id="magnify"
@@ -94,7 +116,7 @@
         </form>
       </div>
       <!-- onclick="toggleRefresh()" -->
-      <div id="refresh" class="relative bg-center h-[250px] w-full"></div>
+      <div class="relative bg-center h-[250px] w-full"></div>
     </div>
 
     <!-- drawer component -->
@@ -232,9 +254,17 @@
                     >1</span
                   >
                 </button>
-                <ul id="dropdown-container1" class="hidden py-2 space-y-2">
-                  <div id="bg-images" data-number="6">
-                    <li data-id="6" data-sef="googlbounce" class="bg">
+                <ul
+                  id="dropdown-container1"
+                  class="relative hidden py-2 space-y-2"
+                >
+                  <div id="bg-images" data-number="26">
+                    <li data-id="22" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Kureiji Ollie
+                      </span>
                       <img src="./media/Kureiji_Ollie.gif" />
                     </li>
                   </div>
@@ -257,34 +287,49 @@
                     >5</span
                   >
                 </button>
-                <ul id="dropdown-container2" class="hidden py-2 space-y-2">
-                  <div id="bg-images" data-number="6" class="group">
-                    <li data-id="1" data-sef="googlbounce" class="bg">
-                      <img src="./media/Melody.gif" />
-                      <!-- <div
-                                                data-tooltip-target="tooltip-hover"
-                        data-tooltip-trigger="hover"
-                        data-tooltip-trigger="click"
-
-                        
-                        id="tooltip-hover"
-                        role="tooltip"
-                        class="-mt-10 left-0 z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                <ul
+                  id="dropdown-container2"
+                  class="relative hidden py-2 space-y-2"
+                >
+                  <div id="bg-images" data-number="26" class="group">
+                    <li data-id="1" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
-                        Melody
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                      </div> -->
+                        Projekt Melody
+                      </span>
+                      <img src="./media/Melody.gif" />
                     </li>
-                    <li data-id="2" data-sef="googlbounce" class="bg">
-                      <img src="./media/Cerberus.gif" />
+                    <li data-id="2" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        IronMouse
+                      </span>
+                      <img src="./media/IronMouse.gif" />
                     </li>
-                    <li data-id="3" data-sef="googlbounce" class="bg">
+                    <li data-id="3" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        LichVtuber
+                      </span>
                       <img src="./media/Lich.gif" />
                     </li>
-                    <li data-id="4" data-sef="googlbounce" class="bg">
+                    <li data-id="4" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        VeiBae
+                      </span>
                       <img src="./media/VeiBae.gif" />
                     </li>
-                    <li data-id="5" data-sef="googlbounce" class="bg">
+                    <li data-id="5" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        BunnyGif
+                      </span>
                       <img src="./media/Bunny.gif" />
                     </li>
                   </div>
@@ -307,28 +352,60 @@
                     >6</span
                   >
                 </button>
-                <ul id="dropdown-container3" class="hidden py-2 space-y-2">
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Billing</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Invoice</a
-                    >
-                  </li>
+                <ul
+                  id="dropdown-container3"
+                  class="relative hidden py-2 space-y-2"
+                >
+                  <div id="bg-images" data-number="26">
+                    <li data-id="7" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Google-sama
+                      </span>
+                      <img src="./media/Google-sama.gif" />
+                    </li>
+                    <li data-id="8" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Edge-chan
+                      </span>
+                      <img src="./media/Edge-chan.gif" />
+                    </li>
+                    <li data-id="9" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        PS4-chan
+                      </span>
+                      <img src="./media/PS4-chan.gif" />
+                    </li>
+                    <li data-id="10" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Xbox-chan
+                      </span>
+                      <img src="./media/XBX-chan.gif" />
+                    </li>
+                    <li data-id="16" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        MerryDawg
+                      </span>
+                      <img src="./media/MerryDawg.gif" />
+                    </li>
+                    <li data-id="17" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Lumi
+                      </span>
+                      <img src="./media/Lumi.gif" />
+                    </li>
+                  </div>
                 </ul>
               </li>
             </div>
@@ -348,28 +425,92 @@
                     >10</span
                   >
                 </button>
-                <ul id="dropdown-container4" class="hidden py-2 space-y-2">
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Billing</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Invoice</a
-                    >
-                  </li>
+                <ul
+                  id="dropdown-container4"
+                  class="relative hidden py-2 space-y-2"
+                >
+                  <div id="bg-images" data-number="26">
+                    <li data-id="11" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Lily
+                      </span>
+                      <img src="./media/Lily_LostPause_.gif" />
+                    </li>
+                    <li data-id="12" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Ota-chan
+                      </span>
+                      <img src="./media/Otachan.gif" />
+                    </li>
+                    <li data-id="13" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Zone-tan
+                      </span>
+                      <img src="./media/Zone-tan.gif" />
+                    </li>
+                    <li data-id="15" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Uzaki-chan
+                      </span>
+                      <img src="./media/Uzaki-chan.gif" />
+                    </li>
+                    <li data-id="6" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        BunnyAyu
+                      </span>
+                      <img src="./media/Bunny_IRL.gif" />
+                    </li>
+                    <li data-id="14" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Golden Onyx
+                      </span>
+                      <img src="./media/Golden_Onyx.gif" />
+                    </li>
+                    <li data-id="18" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Cerberus
+                      </span>
+                      <img src="./media/Cerberus.gif" />
+                    </li>
+                    <li data-id="19" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Cerberus 1
+                      </span>
+                      <img src="./media/Cerberus1.gif" />
+                    </li>
+                    <li data-id="20" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Cerberus 2
+                      </span>
+                      <img src="./media/Cerberus2.gif" />
+                    </li>
+                    <li data-id="21" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Cerberus 3
+                      </span>
+                      <img src="./media/Cerberus3.gif" />
+                    </li>
+                  </div>
                 </ul>
               </li>
             </div>
@@ -389,28 +530,44 @@
                     >4</span
                   >
                 </button>
-                <ul id="dropdown-container5" class="hidden py-2 space-y-2">
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Billing</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Invoice</a
-                    >
-                  </li>
+                <ul
+                  id="dropdown-container5"
+                  class="relative hidden py-2 space-y-2"
+                >
+                  <div id="bg-images" data-number="26">
+                    <li data-id="23" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Eth-sama
+                      </span>
+                      <img src="./media/Eth-sama.gif" />
+                    </li>
+                    <li data-id="24" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        Peach [PausePlay]
+                      </span>
+                      <img src="./media/Peach.gif" />
+                    </li>
+                    <li data-id="25" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        LightenBee
+                      </span>
+                      <img src="./media/LightB.gif" />
+                    </li>
+                    <li data-id="26" data-sef="googlbounce" class="bg relative">
+                      <span
+                        class="absolute w-auto px-5 py-2 h-10 right-4 bottom-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                      >
+                        BaeCafe
+                      </span>
+                      <img src="./media/Sawawse.gif" />
+                    </li>
+                  </div>
                 </ul>
               </li>
             </div>
@@ -429,7 +586,10 @@
                     >1</span
                   >
                 </button>
-                <ul id="dropdown-container6" class="hidden py-2 space-y-2">
+                <ul
+                  id="dropdown-container6"
+                  class="relative hidden py-2 space-y-2"
+                >
                   <li>
                     <a
                       href="#"
@@ -453,7 +613,10 @@
                     >1</span
                   >
                 </button>
-                <ul id="dropdown-container7" class="hidden py-2 space-y-2">
+                <ul
+                  id="dropdown-container7"
+                  class="relative hidden py-2 space-y-2"
+                >
                   <li>
                     <a
                       href="#"
@@ -477,7 +640,10 @@
                     >1</span
                   >
                 </button>
-                <ul id="dropdown-container8" class="hidden py-2 space-y-2">
+                <ul
+                  id="dropdown-container8"
+                  class="relative hidden py-2 space-y-2"
+                >
                   <li>
                     <a
                       href="#"
@@ -564,10 +730,15 @@
         location.reload();
       }
 
-      function myfunction() {
-        var answer = window.orientation > 1;
-        alert(answer ? "It is a mobile device" : "It is not a mobile device");
+      function toggleClear() {
+        document.getElementById("xbutton").classList.toggle("invisible");
+        document.getElementById("magnify").classList.toggle("hidden");
       }
+
+      // function myfunction() {
+      //   var answer = window.orientation > 1;
+      //   alert(answer ? "It is a mobile device" : "It is not a mobile device");
+      // }
     </script>
 
     
