@@ -192,6 +192,28 @@
           </svg>
           <span class="sr-only">Close menu</span>
         </button>
+        <button
+          onclick="toggleCollapse()"
+          type="button"
+          class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[365px] md:top-[380px] right-7 inline-flex items-center z-[50]"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-[40px] h-[40px] pt-[9px] pl-[6px]"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+            />
+          </svg>
+          <span class="sr-only">Collapse</span>
+        </button>
+
         <div class="py-4 overflow-y-auto">
           <ul class="relative space-y-2 font-medium sm:p-2 md:p-4">
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
@@ -221,6 +243,7 @@
                     />
                   </svg>
                 </button>
+
                 <ul id="dropdown-container11" class="py-2 space-y-2">
                   <!-- hidden -->
                   <li>
@@ -258,7 +281,9 @@
                 </ul>
               </li>
             </div>
-            <br /><br /><br />
+            <br /><br />
+            <br /><br />
+
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
@@ -758,66 +783,76 @@
     <!-- drawer component -->
 
     <script>
-      let darkMode = localStorage.getItem("darkMode");
       // Toggle Dark Functionality
       let flag = true;
+      let flag2 = true;
       const toggler = document.querySelector(".toggler");
       const html = document.documentElement;
 
-      if (
-        darkMode === "true" ||
-        (!("darkMode" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.querySelector("html").classList.add("dark");
-      } else {
-        document.querySelector("html").classList.remove("dark");
-      }
-
-      if (darkMode === "null") {
-        toggler.children[0].classList.toggle("translate-x-0");
-        html.classList.remove("dark");
-      }
-      if (darkMode === "enabled") {
-        toggler.children[0].classList.toggle("translate-x-10");
-        html.classList.add("dark");
+      let darkMode = localStorage.getItem("darkMode");
+      $(window).on("load", function () {
+        if (darkMode === "null") {
+          toggler.children[0].classList.toggle("translate-x-0");
+          html.classList.remove("dark");
+        }
+        if (darkMode === "enabled") {
+          toggler.children[0].classList.toggle("translate-x-10");
+          html.classList.add("dark");
+          if (flag) {
+            // Toggle Dark Function
+            const toggleDark = () => {
+              toggler.addEventListener("click", () => {
+                toggler.children[0].classList.toggle("translate-x-0");
+                if (flag) {
+                  html.classList.remove("dark");
+                  localStorage.setItem("darkMode", "null");
+                  location.reload();
+                } else {
+                  toggler.children[0].classList.toggle("translate-x-0");
+                  html.classList.add("dark");
+                  localStorage.setItem("darkMode", "enable");
+                }
+                flag = !flag;
+              });
+            };
+            toggleDark();
+          }
+        }
         if (flag) {
           // Toggle Dark Function
           const toggleDark = () => {
             toggler.addEventListener("click", () => {
-              toggler.children[0].classList.toggle("translate-x-0");
+              toggler.children[0].classList.toggle("translate-x-10");
               if (flag) {
-                html.classList.remove("dark");
-                localStorage.setItem("darkMode", "null");
-                location.reload();
+                html.classList.add("dark");
+                localStorage.setItem("darkMode", "enabled");
               } else {
                 toggler.children[0].classList.toggle("translate-x-0");
-                html.classList.add("dark");
-                localStorage.setItem("darkMode", "enable");
+                html.classList.remove("dark");
+                localStorage.setItem("darkMode", null);
               }
               flag = !flag;
             });
           };
           toggleDark();
         }
-      }
-      if (flag) {
-        // Toggle Dark Function
-        const toggleDark = () => {
-          toggler.addEventListener("click", () => {
-            toggler.children[0].classList.toggle("translate-x-10");
-            if (flag) {
-              html.classList.add("dark");
-              localStorage.setItem("darkMode", "enabled");
-            } else {
-              toggler.children[0].classList.toggle("translate-x-0");
-              html.classList.remove("dark");
-              localStorage.setItem("darkMode", null);
-            }
-            flag = !flag;
-          });
-        };
-        toggleDark();
+      });
+      function toggleCollapse() {
+        document
+          .getElementById("dropdown-container1")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container2")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container3")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container4")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container5")
+          .classList.toggle("hidden");
       }
 
       function toggleSlideover() {
