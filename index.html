@@ -790,9 +790,21 @@
       const html = document.documentElement;
       let darkMode = localStorage.getItem("darkMode");
 
-      document.onload = setTheme();
+      document.onload = onRefreshLoad();
 
-      function setTheme() {
+      function onRefreshLoad() {
+        if (localStorage.getItem("randombg") === "true") {
+          // $("#randomizebutton").attr("checked", "checked");
+          document
+            .getElementById("randomcircle")
+            .classList.toggle("translate-x-10");
+        } else {
+          // $("#randomizebutton").attr("checked", false);
+          document
+            .getElementById("randomcircle")
+            .classList.toggle("translate-x-0");
+        }
+
         if (darkMode === "enabled") {
           toggler.children[0].classList.toggle("translate-x-10");
           html.classList.add("dark");
@@ -840,6 +852,9 @@
           toggleDark();
         }
       }
+
+      $(document).on("click", "#settings-button", function (e) {});
+
       function toggleCollapse() {
         document
           .getElementById("dropdown-container1")
