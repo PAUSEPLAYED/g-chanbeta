@@ -60,6 +60,29 @@
         <!--BG IMPLEMENT-->
       </div>
       <div
+        class="absolute flex h-[50px] sm:mt-[120px] mt-[170px] sm:w-[100%] md:w-[650px]"
+      >
+        <button
+          onclick="toggleStopRandom()"
+          type="button"
+          class="z-1 absolute pt-[10px] pl-[7.5px] right-3 bottom-4 h-[42px] w-[42px] hover:ease-out focus:ease-out duration-[300ms] rounded-full dark:bg-neutral-800 bg-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+        >
+          <svg
+            viewBox="0 0 22 22"
+            aria-label="Reset"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+          >
+            <path
+              d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
         id="searchbar"
         class="sm:absolute sm:mt-[215px] sm:w-[100%] md:mt-[20px] md:w-[650px]"
       >
@@ -307,7 +330,7 @@
                   <div id="bg-images" data-number="26">
                     <li data-id="22" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Kureiji Ollie
                       </span>
@@ -343,7 +366,7 @@
                   <div id="bg-images" data-number="26" class="group">
                     <li data-id="1" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Projekt Melody
                       </span>
@@ -354,7 +377,7 @@
                     </li>
                     <li data-id="2" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         IronMouse
                       </span>
@@ -365,7 +388,7 @@
                     </li>
                     <li data-id="3" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         LichVtuber
                       </span>
@@ -376,7 +399,7 @@
                     </li>
                     <li data-id="4" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         VeiBae
                       </span>
@@ -387,7 +410,7 @@
                     </li>
                     <li data-id="5" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         BunnyGif
                       </span>
@@ -423,7 +446,7 @@
                   <div id="bg-images" data-number="26">
                     <li data-id="7" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Google-sama
                       </span>
@@ -434,7 +457,7 @@
                     </li>
                     <li data-id="8" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Edge-chan
                       </span>
@@ -445,7 +468,7 @@
                     </li>
                     <li data-id="9" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         PS4-chan
                       </span>
@@ -456,7 +479,7 @@
                     </li>
                     <li data-id="10" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Xbox-chan
                       </span>
@@ -467,7 +490,7 @@
                     </li>
                     <li data-id="16" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         MerryDawg
                       </span>
@@ -478,7 +501,7 @@
                     </li>
                     <li data-id="17" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Lumi
                       </span>
@@ -514,7 +537,7 @@
                   <div id="bg-images" data-number="26">
                     <li data-id="11" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Lily
                       </span>
@@ -525,7 +548,7 @@
                     </li>
                     <li data-id="12" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Ota-chan
                       </span>
@@ -536,7 +559,7 @@
                     </li>
                     <li data-id="13" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Zone-tan
                       </span>
@@ -547,7 +570,7 @@
                     </li>
                     <li data-id="15" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Uzaki-chan
                       </span>
@@ -558,7 +581,7 @@
                     </li>
                     <li data-id="6" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         BunnyAyu
                       </span>
@@ -569,7 +592,7 @@
                     </li>
                     <li data-id="14" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Golden Onyx
                       </span>
@@ -580,7 +603,7 @@
                     </li>
                     <li data-id="18" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Cerberus
                       </span>
@@ -591,7 +614,7 @@
                     </li>
                     <li data-id="19" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Cerberus 1
                       </span>
@@ -602,7 +625,7 @@
                     </li>
                     <li data-id="20" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Cerberus 2
                       </span>
@@ -613,7 +636,7 @@
                     </li>
                     <li data-id="21" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Cerberus 3
                       </span>
@@ -649,7 +672,7 @@
                   <div id="bg-images" data-number="26">
                     <li data-id="23" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Eth-sama
                       </span>
@@ -660,7 +683,7 @@
                     </li>
                     <li data-id="24" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         Peach [PausePlay]
                       </span>
@@ -671,7 +694,7 @@
                     </li>
                     <li data-id="25" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         LightenBee
                       </span>
@@ -682,7 +705,7 @@
                     </li>
                     <li data-id="26" data-sef="googlbounce" class="bg relative">
                       <span
-                        class="absolute w-auto px-5 py-2 h-10 right-4 top-3 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
+                        class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
                         BaeCafe
                       </span>
@@ -791,8 +814,17 @@
       const toggler = document.querySelector(".toggler");
       const html = document.documentElement;
       let darkMode = localStorage.getItem("darkMode");
+      var randombg = localStorage.getItem("randombg");
 
       document.onload = onRefreshLoad();
+
+      function toggleStopRandom() {
+        if (localStorage.getItem("randombg") === "true") {
+          localStorage.setItem("randombg", "false");
+        } else {
+          localStorage.setItem("randombg", "true");
+        }
+      }
 
       function onRefreshLoad() {
         if (localStorage.getItem("randombg") === "true") {
