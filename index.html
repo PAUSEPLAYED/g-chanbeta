@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en" class="dark">
   <head>
     <title>G-chan Beta | PausePLayed</title>
     <meta charset="UTF-8" />
@@ -788,13 +788,11 @@
       let flag2 = true;
       const toggler = document.querySelector(".toggler");
       const html = document.documentElement;
-
       let darkMode = localStorage.getItem("darkMode");
-      $(window).on("load", function () {
-        if (darkMode === "null") {
-          toggler.children[0].classList.toggle("translate-x-0");
-          html.classList.remove("dark");
-        }
+
+      document.onload = setTheme();
+
+      function setTheme() {
         if (darkMode === "enabled") {
           toggler.children[0].classList.toggle("translate-x-10");
           html.classList.add("dark");
@@ -818,6 +816,11 @@
             toggleDark();
           }
         }
+        if (darkMode === "null") {
+          toggler.children[0].classList.toggle("translate-x-0");
+          html.classList.remove("dark");
+        }
+
         if (flag) {
           // Toggle Dark Function
           const toggleDark = () => {
@@ -836,7 +839,7 @@
           };
           toggleDark();
         }
-      });
+      }
       function toggleCollapse() {
         document
           .getElementById("dropdown-container1")
