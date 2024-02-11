@@ -25,6 +25,7 @@
     <!-- <link rel="icon" type="image/svg+xml" href="/xbutton.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <!-- <script type="module" src="src/cookie.js"></script> -->
@@ -42,7 +43,7 @@
     <!-- data-drawer-backdrop="false" -->
 
     <div
-      class="flex justify-center items-center md:min-h-screen flex-col focus:outline-none"
+      class="flex justify-center items-center w-auto flex-col focus:outline-none"
     >
       <!-- sm:pb-[500px] md:pb-[300px] xl:pb-[300px]  -->
       <div
@@ -51,7 +52,7 @@
       >
         <div
           id="background"
-          class="bg-center md:-mt-[16px] md:scale-[1.7] mx-auto mb:h-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
+          class="bg-center mb:h-auto md:-mb-[40px] md:scale-[1.5] 1xl:scale-[1.7] 1xl:-mt-[60px] mx-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
         ></div>
         <div
           onclick="toggleRefresh()"
@@ -59,8 +60,35 @@
         ></div>
         <!--BG IMPLEMENT-->
       </div>
-      <div
+      <!-- <div
         class="absolute flex h-[50px] sm:mt-[120px] mt-[170px] sm:w-[100%] md:w-[650px]"
+      >
+        <button
+          onclick="toggleStopRandom()"
+          type="button"
+          class="z-1 absolute pt-[2.5px] pl-[2px] sm:-right-[0] md:right-0 bottom-4 h-[52px] w-[52px] hover:ease-out focus:ease-out duration-[300ms] sm:rounded-tl-full sm:rounded-bl-full md:rounded-full sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800 bg-neutral-200 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 sm:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+
+                  <button
+          onclick="toggleStopRandom()"
+          type="button"
+          class="z-1 absolute pt-[2.5px] pl-[2px] sm:-right-[0] md:right-0 bottom-4 h-[52px] w-[52px] hover:ease-out focus:ease-out duration-[300ms] sm:rounded-tl-full sm:rounded-bl-full md:rounded-full sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 bg-skin-fill backdrop-blur hover:bg-skin-fill-hover text-skin-base sm:text-neutral-500 text-neutral-400 hover:text-skin-accent"
+        >
+        >
+          <svg
+            viewBox="0 0 25 25"
+            fill="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          >
+            <path
+              d="M2.2 9.4c0 1.3.2 3.3 2 5.1 1.6 1.6 6.9 5.2 7.1 5.4.2.1.4.2.6.2s.4-.1.6-.2c.2-.2 5.5-3.7 7.1-5.4 1.8-1.8 2-3.8 2-5.1 0-3-2.4-5.4-5.4-5.4-1.6 0-3.2.9-4.2 2.3-1-1.4-2.6-2.3-4.4-2.3-2.9 0-5.4 2.4-5.4 5.4zm9.8 1c.6 0 1-.4 1-1 0-1.9 1.5-3.4 3.4-3.4s3.4 1.5 3.4 3.4c0 1.1-.2 2.4-1.5 3.7-1.2 1.2-4.9 3.8-6.3 4.7v-7.4z"
+            />
+          </svg>
+        </button>
+      </div> -->
+      <div
+        class="absolute flex h-[50px] sm:mt-[120px] mt-[320px] sm:w-[100%] md:w-[650px]"
       >
         <button
           onclick="toggleStopRandom()"
@@ -94,6 +122,72 @@
         >
           <!--  search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg) -->
           <input
+            id="searchform"
+            name="q"
+            type="search"
+            class="z-3 sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
+            placeholder="Search G-chan or type a Waifu"
+            spellcheck="false"
+          />
+          <button
+            onclick="toggleClear()"
+            id="settings-button"
+            type="button"
+            class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
+          >
+            <svg
+              onclick="toggleSlideover()"
+              xmlns="http://www.w3.org/2000/svg"
+              class="cursor-pointer"
+              fill="currentColor"
+              viewBox="0 0 19 19"
+              data-drawer-target="drawernavi"
+              data-drawer-show="drawernavi"
+              aria-controls="drawernavi"
+              data-drawer-backdrop="false"
+            >
+              <path
+                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+              />
+            </svg>
+          </button>
+
+          <button
+            id="xbutton"
+            type="reset"
+            class="z-1 invisible absolute pt-2 right-1 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400"
+          >
+            <svg
+              xmlns="/xbutton.svg"
+              fill="currentColor"
+              viewBox="0 0 19 19"
+              aria-label="Reset"
+            >
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+              />
+            </svg>
+          </button>
+
+          <button
+            type="reset"
+            class="absolute visible z-0 pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full dark:text-neutral-900 text-neutral-400"
+          >
+            <svg
+              id="magnify"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 30 30"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-label="Reset"
+            >
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
+          <!-- SEARCHBAR -->
+          <!-- <input
             id="searchform"
             name="q"
             type="search"
@@ -155,11 +249,14 @@
             >
               <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-          </button>
+          </button> -->
+          <!-- SEARCHBAR -->
         </form>
       </div>
       <!-- onclick="toggleRefresh()" -->
-      <div class="relative bg-center sm:h-[175px] md:h-[250px] w-full"></div>
+      <div
+        class="relative bg-center sm:h-[175px] md:h-[100px] w-full h-auto"
+      ></div>
     </div>
 
     <!-- drawer component -->
@@ -177,21 +274,33 @@
           aria-controls="drawernavi"
         ></div>
       </div>
+
       <div
         id="drawernavi"
-        class="absolute top-0 sm:h-screen md:h-screen md:left-0 xl:left-40 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 sm:p-2 sm:pb-[25px] md:p-4 sm:w-4/5 md:w-[400px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
+        class="absolute top-0 sm:h-screen md:h-screen md:left-0 xl:left-[250px] 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 sm:p-2 sm:pb-[25px] md:p-4 sm:w-4/5 md:w-[350px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
         tabindex="1"
         aria-labelledby="drawernavi-label"
       >
+        <!-- <div class="absolute overflow-y-auto h-auto w-auto">
+          <button
+            id="to-top-button"
+            onclick="goToTop()"
+            title="Go To Top"
+            class="sticky z-[90] bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md bg-indigo-500 text-white text-3xl font-bold"
+          >
+            &uarr;
+          </button>
+        </div> -->
         <h5
           id="drawernavi-label"
-          class="text-base ml-8 font-semibold text-neutral-900 dark:text-neutral-400 uppercase"
+          class="text-base ml-8 font-bold text-neutral-900 dark:text-neutral-400 uppercase"
         >
           <br /><br />
           G-chan Beta<br />
           by PausePLay
-          <br /><br /><br />
+          <br /><br />
         </h5>
+
         <button
           onclick="toggleSlideover()"
           type="button"
@@ -214,10 +323,11 @@
           </svg>
           <span class="sr-only">Close menu</span>
         </button>
+
         <button
           onclick="toggleCollapse()"
           type="button"
-          class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[365px] md:top-[380px] sm:right-4 md:right-7 inline-flex items-center z-[50]"
+          class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[315px] md:top-[330px] sm:right-4 md:right-7 inline-flex items-center z-[50]"
         >
           <svg
             aria-hidden="true"
@@ -246,7 +356,8 @@
                 >
                   <!--                   aria-controls="dropdown-container11"
                   data-collapse-toggle="dropdown-container11" -->
-                  <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                  <span
+                    class="flex-1 ml-3 text-left whitespace-nowrap font-semibold"
                     >Settings</span
                   >
                   <svg
@@ -306,7 +417,7 @@
               </li>
             </div>
             <br /><br />
-            <br /><br />
+            <br />
 
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
@@ -316,12 +427,15 @@
                   aria-controls="dropdown-container1"
                   data-collapse-toggle="dropdown-container1"
                 >
-                  <span class="absolute left-0 ml-5">Hololive Vtuber/s</span>
+                  <span class="absolute font-bold left-0 ml-5"
+                    >Hololive Vtuber/s</span
+                  >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
                     >1</span
                   >
                 </button>
+
                 <ul
                   id="dropdown-container1"
                   class="relative hidden py-2 space-y-2"
@@ -352,7 +466,9 @@
                   aria-controls="dropdown-container2"
                   data-collapse-toggle="dropdown-container2"
                 >
-                  <span class="absolute left-0 ml-5">EN Vtubers Animation</span>
+                  <span class="absolute font-bold left-0 ml-5"
+                    >EN Vtubers Animation</span
+                  >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
                     >5</span
@@ -430,7 +546,7 @@
                   aria-controls="dropdown-container3"
                   data-collapse-toggle="dropdown-container3"
                 >
-                  <span class="absolute left-0 ml-5"
+                  <span class="absolute font-bold left-0 ml-5"
                     >[Merryweather] Characters</span
                   >
                   <span
@@ -521,7 +637,7 @@
                   aria-controls="dropdown-container4"
                   data-collapse-toggle="dropdown-container4"
                 >
-                  <span class="absolute left-0 ml-5"
+                  <span class="absolute font-bold left-0 ml-5"
                     >Internet Waifus Animation</span
                   >
                   <span
@@ -656,7 +772,7 @@
                   aria-controls="dropdown-container5"
                   data-collapse-toggle="dropdown-container5"
                 >
-                  <span class="absolute left-0 ml-5"
+                  <span class="absolute font-bold left-0 ml-5"
                     >Derivative Animations ⟠</span
                   >
                   <span
@@ -717,7 +833,7 @@
                 </ul>
               </li>
             </div>
-            <br /><br /><br />
+            <br /><br />
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
@@ -726,22 +842,35 @@
                   aria-controls="dropdown-container6"
                   data-collapse-toggle="dropdown-container6"
                 >
-                  <span class="absolute left-0 ml-5">Exclusive Versions</span>
+                  <span class="absolute font-bold left-0 ml-5"
+                    >Exclusive Versions</span
+                  >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
-                    >1</span
+                    >♡</span
                   >
                 </button>
                 <ul
                   id="dropdown-container6"
-                  class="relative hidden py-2 space-y-2"
+                  class="relative justify-center items-center hidden py-2 space-y-2"
                 >
                   <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
+                    <p
+                      class="w-full text-base text-justify text-neutral-900 transition duration-75 rounded-lg p-[20px] group dark:text-white"
                     >
+                      Offline Mode, No Watermark/ Alternate versions and other
+                      animations are only available on:
+                    </p>
+                    <div class="flex justify-center items-center w-full h-auto">
+                      <button
+                        onclick="location.href='https://www.patreon.com/pauseplayed'"
+                        target="_blank"
+                        type="button"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                      >
+                        <span class="font-bold">PATREON</span>
+                      </button>
+                    </div>
                   </li>
                 </ul>
               </li>
@@ -753,22 +882,70 @@
                   aria-controls="dropdown-container7"
                   data-collapse-toggle="dropdown-container7"
                 >
-                  <span class="absolute left-0 ml-5">Version Log</span>
+                  <span class="absolute font-bold left-0 ml-5"
+                    >Version Log</span
+                  >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
-                    >1</span
+                    >△</span
                   >
                 </button>
                 <ul
                   id="dropdown-container7"
                   class="relative hidden py-2 space-y-2"
                 >
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
-                    >
+                  <li
+                    class="w-full text-base text-justify text-neutral-900 transition duration-75 rounded-lg p-[20px] group dark:text-white"
+                  >
+                    1.20 (02/29/2024)<br />
+                    <ul class="p-2">
+                      <li>Soft Launch of website</li>
+                      <li>Added new animations</li>
+                      <li>Fixed Animation Titles</li>
+                      <li>New UI design with theme selection</li>
+                      <li>Quick randomize button</li>
+                      <li>Refresh Upon Animation click</li>
+                    </ul>
+                    1.19 (12/21/2022)<br />
+                    <ul class="p-2">
+                      <li>Migrated to Manifest V3</li>
+                      <li>Added new animations</li>
+                      <li>Currently debugging bookmarks</li>
+                      <li>Currently fixing animation titles</li>
+                    </ul>
+                    <br />
+                    1.18 (01/27/2022)<br />
+                    <ul class="p-2">
+                      <li>Fixed highlights and added buttons</li>
+                      <li>Added new animations</li>
+                      <li>Fixed some animation sizes</li>
+                    </ul>
+                    <br />
+                    1.17 (09/18/21)<br />
+                    <ul class="p-2">
+                      <li>Now compatible with Android Phones</li>
+                      <li>See how to install on Phone</li>
+                      <a
+                        href="https://i.imgur.com/ZFiLx2E.png"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >HERE.</a
+                      >
+                      <li>Added new animations and buttons</li>
+                    </ul>
+                    <br />
+                    1.1 (08/04/21)<br />
+                    <ul class="p-2">
+                      <li>Added Title on each Animation</li>
+                      <li>Fixed Scroll issues on side Panel</li>
+                    </ul>
+                    <br />
+                    1.0 (07/11/21)<br />
+                    <ul class="p-2">
+                      <li>Initial release</li>
+                      <li>Merged all userstyle animations</li>
+                    </ul>
                   </li>
                 </ul>
               </li>
@@ -780,22 +957,121 @@
                   aria-controls="dropdown-container8"
                   data-collapse-toggle="dropdown-container8"
                 >
-                  <span class="absolute left-0 ml-5">About</span>
+                  <span class="absolute font-bold left-0 ml-5">About</span>
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
-                    >1</span
+                    >?</span
                   >
                 </button>
                 <ul
                   id="dropdown-container8"
                   class="relative hidden py-2 space-y-2"
                 >
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center w-full p-2 text-neutral-900 transition duration-75 rounded-lg pl-11 group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-                      >Products</a
-                    >
+                  <li
+                    class="w-full text-base text-justify text-neutral-900 transition duration-75 rounded-lg p-[20px] group dark:text-white"
+                  >
+                    <p>
+                      All animations are made by the developer itself
+                      <a
+                        href="https://twitter.com/pauseplayed"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >PausePlay
+                      </a>
+                      with the help of these amazing Art Collectors:
+                      <a
+                        href="https://twitter.com/robek_world"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        RWX</a
+                      >,
+                      <a
+                        href="https://twitter.com/vanaric"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Vanaric</a
+                      >,
+                      <a
+                        href="https://twitter.com/PigThePersona"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Ranbuta</a
+                      >
+                      and
+                      <a
+                        href="https://twitter.com/shiomueth"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Shiomu</a
+                      >. <br /><br />
+                      As well as these dedicated people on
+                      <a
+                        href="https://patreon.com/pauseplayed"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >PATREON:</a
+                      >
+                    </p>
+                    <p>
+                      SGTboo23, Uganda LP, iceheart, Alejandro Gomez, Samuel
+                      Pettengill, Ahh_ meep, Luke Thomson, david garcia, Jake st
+                      amand, michael clarke, Sean Nichols, MochiPaisen, Joe
+                      <br />
+                      <br />
+                      Alois trancy, Chitosaki, Da Mustache, Darkwarrior619,
+                      Derek.Zhou, Ethan Tran, India Actual, Malc, Najaho, Paul
+                      Bartelt, The Gaming Vader, Thorbjörn Meyer, Tyler Robins,
+                      W, WolframElementia
+                      <br />
+                      <br />
+                      Alex, Ali Mohammed, Andy, Angry Red Panda, Baracus7, Blizz
+                      Land, Brian Alvarez, Caretaker, Chris Bennett, Darro Chan,
+                      Donovan George, Dusti333, Ethan Ingram, Jodie Hicks,
+                      Johnny Davis, Juan D Arrieta, Justin L Elder, Kandice
+                      Towner, L3wdS3npai59, mark jacob, Marky Mark, Matthew
+                      Strom, Mr.Addicted, Nep Nep, Nep Nep, Scholtinator,
+                      SenpaiHentai, Sir bopy, TallGuyTyler, TheMilesLP, Will
+                      DeRegio, William Lindsay, WolfX32, Xavier Cano
+                      <br />
+                      <br />
+                    </p>
+                    <p>
+                      Also, special thanks as well for
+                      <a
+                        href="https://twitter.com/MaestormXR"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        MaestormXR</a
+                      >
+                      for stylish code reviews, as well as
+                      <a
+                        href="https://twitter.com/Merryweatherey"
+                        class="items-center w-[120px] p-1 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800 dark:bg-neutral-900 bg-neutral-100"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Merryweather</a
+                      >
+                      for their iconic characters and more!
+                    </p>
+                    <br />
+                    <br />
+
+                    <p class="w-full text-left">
+                      Copyright© 2020-2069 PausePlayed
+                    </p>
                   </li>
                 </ul>
               </li>
@@ -884,6 +1160,24 @@
           };
           toggleDark();
         }
+      }
+      var toTopButton = document.getElementById("to-top-button");
+
+      // When the user scrolls down 200px from the top of the document, show the button
+      window.onscroll = function () {
+        if (
+          document.body.scrollTop > 200 ||
+          document.documentElement.scrollTop > 200
+        ) {
+          toTopButton.classList.remove("hidden");
+        } else {
+          toTopButton.classList.add("hidden");
+        }
+      };
+
+      // When the user clicks on the button, scroll to the top of the document
+      function goToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
       $(document).on("click", "#settings-button", function (e) {});
