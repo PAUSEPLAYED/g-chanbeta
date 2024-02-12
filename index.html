@@ -277,16 +277,16 @@
 
       <div
         id="drawernavi"
-        class="absolute top-0 sm:h-screen md:h-screen md:left-0 xl:left-[250px] 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 sm:p-2 sm:pb-[25px] md:p-4 sm:w-4/5 md:w-[350px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
+        class="absolute top-0 left-0 sm:h-[100%] md:h-[100%] xl:left-[250px] 1xl:left-[500px] 2xl:left-[720px] rounded-[30px] z-40 sm:p-2 sm:pb-[25px] md:p-4 sm:w-4/5 md:w-[350px] overflow-y-auto transition-transform ease-out duration-[400ms] -translate-x-full -translate-y-full bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
         tabindex="1"
         aria-labelledby="drawernavi-label"
       >
-        <!-- <div class="absolute overflow-y-auto h-auto w-auto">
+        <!-- <div class="absolute bottom-0 h-[100px] w-full">
           <button
             id="to-top-button"
             onclick="goToTop()"
             title="Go To Top"
-            class="sticky z-[90] bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md bg-indigo-500 text-white text-3xl font-bold"
+            class="fixed z-[90] bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md bg-indigo-500 text-white text-3xl font-bold"
           >
             &uarr;
           </button>
@@ -295,10 +295,10 @@
           id="drawernavi-label"
           class="text-base ml-8 font-bold text-neutral-900 dark:text-neutral-400 uppercase"
         >
-          <br /><br />
+          <br />
           G-chan Beta<br />
           by PausePLay
-          <br /><br />
+          <br />
         </h5>
 
         <button
@@ -323,30 +323,58 @@
           </svg>
           <span class="sr-only">Close menu</span>
         </button>
-
-        <button
-          onclick="toggleCollapse()"
-          type="button"
-          class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[315px] md:top-[330px] sm:right-4 md:right-7 inline-flex items-center z-[50]"
+        <!--           class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[315px] md:top-[330px] sm:right-4 md:right-7 inline-flex items-center z-[50]" -->
+        <div
+          id="collapseDiv"
+          class="sticky pointer-events-auto top-[325px] sm:float-right md:ml-[255px] items-center z-[50]"
         >
-          <svg
-            aria-hidden="true"
-            class="w-[40px] h-[40px] pt-[9px] pl-[6px]"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            id="collapseButton"
+            onclick="toggleCollapse()"
+            type="button"
+            class="fixed transition duration-300 ease-in-out bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[265px] md:top-[280px] sm:right-4 md:right-7 inline-flex items-center z-[50]"
           >
-            <path
-              class="rounded-full bg-neutral-300 dark:bg-neutral-700"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-            />
-          </svg>
-          <span class="sr-only">Collapse</span>
-        </button>
-
+            <svg
+              aria-hidden="true"
+              class="w-[40px] h-[40px] pt-[9px] pl-[6px]"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="rounded-full bg-neutral-300 dark:bg-neutral-700"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+            <!-- <span class="sr-only">Collapse</span> -->
+          </button>
+          <button
+            id="uncollapseButton"
+            onclick="untoggleCollapse()"
+            type="button"
+            class="sticky transition duration-300 ease-in-out hidden rotate-180 bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[265px] md:top-[280px] sm:right-4 md:right-7 right-0 items-center z-[50]"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-[40px] h-[40px] pt-[9px] pl-[6px]"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="rounded-full bg-neutral-300 dark:bg-neutral-700"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+            <!-- <span class="sr-only">Collapse</span> -->
+          </button>
+        </div>
         <div class="py-4 overflow-y-auto">
           <ul class="relative space-y-2 font-medium sm:p-2 md:p-4">
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
@@ -466,12 +494,12 @@
               <li>
                 <button
                   type="button"
-                  class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
+                  class="relative w-full flex items-center p-2 h-11 text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
                   aria-controls="dropdown-container2"
                   data-collapse-toggle="dropdown-container2"
                 >
                   <span class="absolute font-bold left-0 ml-5"
-                    >EN Vtubers Animation</span
+                    >EN Vtubers Anime</span
                   >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
@@ -551,7 +579,7 @@
                   data-collapse-toggle="dropdown-container3"
                 >
                   <span class="absolute font-bold left-0 ml-5"
-                    >[Merryweather] Characters</span
+                    >Merryweather OC</span
                   >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
@@ -642,7 +670,7 @@
                   data-collapse-toggle="dropdown-container4"
                 >
                   <span class="absolute font-bold left-0 ml-5"
-                    >Internet Waifus Animation</span
+                    >Internet Waifus</span
                   >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
@@ -777,7 +805,7 @@
                   data-collapse-toggle="dropdown-container5"
                 >
                   <span class="absolute font-bold left-0 ml-5"
-                    >Derivative Animations ⟠</span
+                    >Derivatives ⟠</span
                   >
                   <span
                     class="absolute right-0 inset-y-0 mt-2.5 mr-3 inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-neutral-800 bg-neutral-100 rounded-full dark:bg-neutral-900 dark:text-neutral-300"
@@ -804,7 +832,7 @@
                       <span
                         class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
-                        Peach [PausePlay]
+                        Peach
                       </span>
                       <img
                         src="./media/Peach.gif"
@@ -910,6 +938,7 @@
                       <li>Quick randomize button</li>
                       <li>Refresh Upon Animation click</li>
                     </ul>
+                    <br />
                     1.19 (12/21/2022)<br />
                     <ul class="p-2">
                       <li>Migrated to Manifest V3</li>
@@ -1102,6 +1131,7 @@
           localStorage.setItem("randombg", "false");
         } else {
           localStorage.setItem("randombg", "true");
+          location.reload();
         }
       }
 
@@ -1202,9 +1232,38 @@
         document
           .getElementById("dropdown-container5")
           .classList.toggle("hidden");
+        document
+          .getElementById("collapseButton")
+          .classList.toggle("rotate-180");
+        document.getElementById("collapseButton").classList.add("hidden");
+        document.getElementById("uncollapseButton").classList.remove("hidden");
+      }
+
+      function untoggleCollapse() {
+        document
+          .getElementById("dropdown-container1")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container2")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container3")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container4")
+          .classList.toggle("hidden");
+        document
+          .getElementById("dropdown-container5")
+          .classList.toggle("hidden");
+        document
+          .getElementById("collapseButton")
+          .classList.toggle("rotate-180");
+        document.getElementById("collapseButton").classList.remove("hidden");
+        document.getElementById("uncollapseButton").classList.add("hidden");
       }
 
       function toggleSlideover() {
+        console.log("Slide Toggle");
         document
           .getElementById("slideover-container")
           .classList.toggle("invisible");
