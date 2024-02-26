@@ -51,7 +51,6 @@
           class="relative rounded-[30px] shadow bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
         >
           <button
-            id="trashButton"
             onclick="addmodal()"
             type="button"
             class="absolute top-3 end-2.5 text-sm w-12 h-12 ms-auto inline-flex justify-center items-center hover:drop-shadow-lg bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full"
@@ -397,11 +396,9 @@
               </form>
             </div>
             <div class="col-span-0"></div>
-            <div
-              id="add-shortcut"
-              class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto"
-            >
+            <div class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto">
               <button
+                id="trashButton"
                 onclick="addmodal()"
                 type="button"
                 class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-md p-1.5 right-0 items-center z-20"
@@ -1499,7 +1496,7 @@
       // script.js
       const bookmarksContainer = document.getElementById("bookmarks");
       const addBookmarkButton = document.getElementById("addBookmark");
-      const trashButton = document.getElementById("trashButton");
+
       const editBookmarkButton = document.getElementById("saveBookmark");
       const bookmarkUrlInput = document.getElementById("bookmarkUrl");
       // Check if the user is on a mobile device
@@ -1673,31 +1670,31 @@
           editButton.textContent = "Edit";
           bookmarkElement.appendChild(editButton);
 
-          // const deleteButton = document.createElement("button");
-          // deleteButton.setAttribute("id", "dButton");
-          // deleteButton.classList.add(
-          //   "deleteBookmark",
-          //   "sm:display:none",
-          //   "absolute",
-          //   "hidden",
-          //   "md:group-hover:block",
-          //   "text-lg",
-          //   "rounded-l-full",
-          //   "p-1.5",
-          //   "top-[-1px]",
-          //   "right-[0px]",
-          //   "backdrop-blur",
-          //   "bg-neutral-300/30",
-          //   "dark:bg-neutral-700/30",
-          //   "dark:hover:bg-red-600",
-          //   "hover:bg-red-600",
-          //   "dark:text-white",
-          //   "text-neutral-500",
-          //   "hover:text-white",
-          //   "hover:text-white"
-          // );
-          // deleteButton.textContent = "❌";
-          // bookmarkElement.appendChild(deleteButton);
+          const deleteButton = document.createElement("button");
+          deleteButton.setAttribute("id", "dButton");
+          deleteButton.classList.add(
+            "deleteBookmark",
+            "display:none",
+            "absolute",
+            "hidden",
+            "group-hover:block",
+            "text-md",
+            "rounded-l-full",
+            "p-1.5",
+            "top-[-1px]",
+            "right-[0px]",
+            "backdrop-blur",
+            "bg-neutral-300/30",
+            "dark:bg-neutral-700/30",
+            "dark:hover:bg-red-600",
+            "hover:bg-red-600",
+            "dark:text-white",
+            "text-neutral-500",
+            "hover:text-white",
+            "hover:text-white"
+          );
+          deleteButton.textContent = "❌";
+          bookmarkElement.appendChild(deleteButton);
           // Add a click event listener to the button
           img.addEventListener("click", function () {
             const link = url; // Assuming you've defined 'url' elsewhere in your code
@@ -1728,8 +1725,6 @@
             bookmarkElement.addEventListener("mouseover", function () {
               // Change the trashButton's background color to red and increase its size by 20%
               console.log("mouseover true");
-              // trashButton.style.backgroundColor = "red";
-              // trashButton.style.transform = "scale(1.2)";
 
               // Set isMouseOver to true
               isMouseOver = true;
@@ -1757,8 +1752,81 @@
           });
           let timeoutId;
           let sortTimeoutId; // Declare a variable to hold the timeout outside the functions
+          const trashButton = document.getElementById("trashButton");
+          let draggedBookmark;
 
           // Create a new Sortable instance for the bookmarks container
+          // Create a new Sortable instance for the bookmarks container
+          // new Sortable(bookmarksContainer, {
+          //   supportPointer: false,
+          //   animation: 150,
+          //   onStart: function (event) {
+          //     // Make the dragged item 20% transparent and apply a backdrop blur
+          //     event.item.style.opacity = "0";
+          //     event.item.style.backdropFilter = "blur(4px)";
+          //     trashButton.style.backgroundColor = "red";
+          //     trashButton.style.transform = "scale(1.2)";
+
+          //     // Keep track of the bookmark that is being dragged
+          //     draggedBookmark = bookmarks[event.oldIndex];
+          //   },
+          //   onMove: function (event) {
+          //     // Get the bounding rectangles of the dragged item and the trashButton
+          //     const draggedRect = event.item.getBoundingClientRect();
+          //     const trashRect = trashButton.getBoundingClientRect();
+
+          //     // Check if the rectangles overlap
+          //     if (
+          //       draggedRect.right > trashRect.left &&
+          //       draggedRect.left < trashRect.right &&
+          //       draggedRect.bottom > trashRect.top &&
+          //       draggedRect.top < trashRect.bottom
+          //     ) {
+          //       // If they overlap, increase the size of the trashButton
+          //       trashButton.style.transform = "scale(1.4)";
+          //     } else {
+          //       // If they don't overlap, reset the size of the trashButton
+          //       trashButton.style.transform = "scale(1.2)";
+          //     }
+          //   },
+          //   onEnd: function (event) {
+          //     // Remove the bookmark from the old position and insert it at the new position
+          //     if (event.oldIndex !== event.newIndex) {
+          //       const bookmark = bookmarks.splice(event.oldIndex, 1)[0];
+          //       bookmarks.splice(event.newIndex, 0, bookmark);
+
+          //       // Update the bookmarks array in local storage
+          //       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+          //       // Clear the bookmarks container and re-render the bookmarks after 2 seconds
+          //       sortTimeoutId = setTimeout(function () {
+          //         location.reload();
+          //       }, 1500); // 2000 milliseconds = 2 seconds
+          //     }
+
+          //     // Add 'drop' event listener to the trashButton
+          //     trashButton.addEventListener("drop", function (event) {
+          //       event.preventDefault(); // Prevent default action (open as link for some elements)
+
+          //       // Remove the bookmark from the bookmarks array
+          //       const index = bookmarks.indexOf(draggedBookmark);
+          //       if (index > -1) {
+          //         bookmarks.splice(index, 1);
+          //       }
+
+          //       // Update the bookmarks array in local storage
+          //       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+          //       // Refresh the page
+          //       location.reload();
+          //     });
+
+          //     event.item.style.opacity = "";
+          //     event.item.style.backdropFilter = "";
+          //   },
+          // });
+
+          //Create a new Sortable instance for the bookmarks container
           new Sortable(bookmarksContainer, {
             supportPointer: false,
             animation: 150,
@@ -1776,6 +1844,8 @@
                   location.reload();
                 }, 1500); // 2000 milliseconds = 2 seconds
               }
+              // trashButton.style.backgroundColor = "";
+              // trashButton.style.transform = "scale(1)";
 
               event.item.style.opacity = "";
               event.item.style.backdropFilter = "";
@@ -1785,6 +1855,10 @@
               // Make the dragged item 20% transparent and apply a backdrop blur
               event.item.style.opacity = "0";
               event.item.style.backdropFilter = "blur(4px)";
+              // trashButton.style.backgroundColor = "red";
+              // trashButton.style.transform = "scale(1.2)";
+              // trashButton.style.opacity = "50%";
+              // trashButton.style.backdropFilter = "blur(4px)";
 
               // If a timeout is ongoing, clear it
               if (sortTimeoutId) {
@@ -2049,7 +2123,7 @@
                 // Start a timeout to trigger the event after a delay
                 timeoutId = setTimeout(function () {
                   // Your action here
-                }, 1000); // 3000 milliseconds = 3 seconds
+                }, 500); // 3000 milliseconds = 3 seconds
               }
 
               // Disable drag handler for mouseup, touchend, and touchcancel
