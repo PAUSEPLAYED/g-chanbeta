@@ -39,7 +39,7 @@
   </head>
 
   <body
-    class="relative bg-neutral-400 dark:bg-neutral-700 scrollbar-hide no_highlights"
+    class="relative bg-neutral-400 dark:bg-neutral-700 scrollbar-hide no_highlights overscroll-none"
   >
     <!-- ADD MODAL -->
     <div
@@ -434,14 +434,14 @@
         class="sm:z-5 sm:absolute relative sm:pt-[630px] md:pt-[75px] pointer-events-auto"
       >
         <div
-          class="flex-grow bottom-0 px-[20px] overflow-y-auto bg-center sm:max-h-[200px] md:max-h-[200px] sm:w-full md:w-[650px] scrollbar-hide"
+          class="flex-grow bottom-0 md:px-[20px] sm:pr-[35px] overflow-y-auto bg-center sm:max-h-[200px] md:max-h-[200px] sm:w-full md:w-[650px] scrollbar-hide"
         >
           <div
             class="flex-grow items-center justify-center transition-all duration-200 ease-in-out"
           >
             <div
               id="bookmarks"
-              class="transition-all duration-200 ease-in-out grid items-center justify-center sm:grid-cols-4 sm:gap-1 md:grid-cols-6 md:gap-2 mt-4"
+              class="transition-all duration-200 ease-in-out grid items-center justify-center sm:grid-cols-3 sm:gap-1 md:grid-cols-6 md:gap-2 mt-4"
             ></div>
           </div>
         </div>
@@ -1650,11 +1650,11 @@
           editButton.setAttribute("id", "eButton");
           editButton.classList.add(
             "editBookmark",
-            // "sm:display:none",
+            "display:none",
             "absolute",
             "hidden",
             "group-hover:block",
-            "text-xl",
+            "text-lg",
             "rounded-r-full",
             "p-1.5",
             "top-[-1px]",
@@ -1698,14 +1698,21 @@
           // );
           // deleteButton.textContent = "❌";
           // bookmarkElement.appendChild(deleteButton);
-          img.addEventListener("click", () => {
+          // Add a click event listener to the button
+          img.addEventListener("click", function () {
             const link = url; // Assuming you've defined 'url' elsewhere in your code
-            if (!isMouseOver) {
-              if (link.includes("https://")) {
-                window.location.href = link;
-              } else {
-                window.location.href = "https://" + link;
-              }
+            if (link.includes("https://")) {
+              window.location.href = link;
+            } else {
+              window.location.href = "https://" + link;
+            }
+          });
+          pTitle.addEventListener("click", function () {
+            const link = url; // Assuming you've defined 'url' elsewhere in your code
+            if (link.includes("https://")) {
+              window.location.href = link;
+            } else {
+              window.location.href = "https://" + link;
             }
           });
 
@@ -1729,14 +1736,15 @@
             });
 
             bookmarkElement.addEventListener("mouseout", function () {
-              console.log("mouseover false");
+              console.log("mouseover true");
               // Set isMouseOver back to false when the mouse leaves the element
-              isMouseOver = false;
+              isMouseOver = true;
             });
 
             bookmarkElement.addEventListener("click", () => {
               // Only execute the click event handler if isMouseOver is false
               if (!isMouseOver) {
+                sMouseOver = false;
                 console.log("mouseover false");
                 const link = url; // Assuming you've defined 'url' elsewhere in your code
                 if (link.includes("https://")) {
@@ -1908,6 +1916,15 @@
           // let link = localStorage.getItem(url);
 
           img.addEventListener("click", () => {
+            const link = url; // Assuming you've defined 'url' elsewhere in your code
+            if (link.includes("https://")) {
+              window.location.href = link;
+            } else {
+              window.location.href = "https://" + link;
+            }
+          });
+
+          pTitle.addEventListener("click", function () {
             const link = url; // Assuming you've defined 'url' elsewhere in your code
             if (link.includes("https://")) {
               window.location.href = link;
