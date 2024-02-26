@@ -1524,7 +1524,7 @@
         const { title, url } = bookmark;
         const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
         // const faviconUrl = `chrome://favicon/size/64@1x/${url}`;
-        const defaultFaviconUrl = "./media/icon128.png";
+        // const defaultFaviconUrl = "img/icon128.png";
 
         const bookmarkElement = document.createElement("div");
 
@@ -1714,9 +1714,12 @@
           bookmarksContainer.appendChild(bookmarkElement);
           bookmarkElement.classList.add("cursor-grabbing");
         });
+        let timeoutId;
+        let sortTimeoutId; // Declare a variable to hold the timeout outside the functions
 
         // Create a new Sortable instance for the bookmarks container
         new Sortable(bookmarksContainer, {
+          supportPointer: false,
           animation: 150,
           onEnd: function (event) {
             // Remove the bookmark from the old position and insert it at the new position
@@ -1727,20 +1730,60 @@
               // Update the bookmarks array in local storage
               localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
-              // Clear the bookmarks container
-              bookmarksContainer.innerHTML = "";
-
-              // Re-render the bookmarks
-              renderBookmarks();
+              // Clear the bookmarks container and re-render the bookmarks after 2 seconds
+              sortTimeoutId = setTimeout(function () {
+                location.reload();
+                // bookmarksContainer.innerHTML = "";
+                // renderBookmarks();
+              }, 2000); // 2000 milliseconds = 2 seconds
             }
 
             event.item.style.opacity = "";
             event.item.style.backdropFilter = "";
           },
+
           onStart: function (event) {
             // Make the dragged item 20% transparent and apply a backdrop blur
             event.item.style.opacity = "0";
             event.item.style.backdropFilter = "blur(4px)";
+
+            // If a timeout is ongoing, clear it
+            if (sortTimeoutId) {
+              clearTimeout(sortTimeoutId);
+            }
+
+            // Delayed drag handler for mousemove and touchmove
+            event.item.addEventListener(
+              "mousemove",
+              delayeDragTouchMoveHandler
+            );
+            event.item.addEventListener(
+              "touchmove",
+              delayeDragTouchMoveHandler
+            );
+            event.item.addEventListener(
+              "touchstart",
+              delayeDragTouchMoveHandler
+            );
+
+            function delayeDragTouchMoveHandler(e) {
+              // Start a timeout to trigger the event after a delay
+              timeoutId = setTimeout(function () {
+                // Your action here
+              }, 2000); // 3000 milliseconds = 3 seconds
+            }
+
+            // Disable drag handler for mouseup, touchend, and touchcancel
+            event.item.addEventListener("mouseup", disableDelayedDrag);
+            event.item.addEventListener("touchend", disableDelayedDrag);
+            event.item.addEventListener("touchcancel", disableDelayedDrag);
+
+            function disableDelayedDrag(e) {
+              // If a timeout is ongoing, clear it
+              if (timeoutId) {
+                clearTimeout(timeoutId);
+              }
+            }
           },
         });
       }
@@ -1762,7 +1805,7 @@
           bookmarksContainer.innerHTML = "";
 
           // Re-render the bookmarks
-          renderBookmarks();
+          location.reload();
         }
       });
 
@@ -1797,7 +1840,7 @@
               bookmarksContainer.innerHTML = "";
 
               // Re-render the bookmarks
-              renderBookmarks();
+              location.reload();
             }
           });
 
