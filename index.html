@@ -51,6 +51,7 @@
           class="relative rounded-[30px] shadow bg-white/20 dark:bg-neutral-900/20 backdrop-blur-md scrollbar-hide drop-shadow-lg dark:drop-shadow-lg"
         >
           <button
+            id="trashButton"
             onclick="addmodal()"
             type="button"
             class="absolute top-3 end-2.5 text-sm w-12 h-12 ms-auto inline-flex justify-center items-center hover:drop-shadow-lg bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full"
@@ -1498,9 +1499,12 @@
       // script.js
       const bookmarksContainer = document.getElementById("bookmarks");
       const addBookmarkButton = document.getElementById("addBookmark");
+      const trashButton = document.getElementById("trashButton");
       const editBookmarkButton = document.getElementById("saveBookmark");
       const bookmarkUrlInput = document.getElementById("bookmarkUrl");
-
+      // Check if the user is on a mobile device
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      let bookTimeoutId; // Declare a variable to hold the timeout outside the function
       // Load bookmarks from local storage
       let bookmarks = JSON.parse(localStorage.getItem("bookmarks")) || [];
 
@@ -1519,90 +1523,391 @@
         localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
       }
 
-      // Create a bookmark element
-      function createBookmarkElement(bookmark, index) {
-        const { title, url } = bookmark;
-        const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
-        // const faviconUrl = `chrome://favicon/size/64@1x/${url}`;
-        // const defaultFaviconUrl = "img/icon128.png";
+      if (isMobile) {
+        // Create a bookmark element
+        function createBookmarkElement(bookmark, index) {
+          const { title, url } = bookmark;
+          const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
+          const bookmarkElement = document.createElement("div");
+          let isMouseOver = false;
 
-        const bookmarkElement = document.createElement("div");
+          bookmarkElement.classList.add(
+            "bookmark",
+            "overflow",
+            "group",
+            "relative",
+            "flex",
+            "flex-col",
+            "items-center",
+            "p-1",
+            "rounded-md",
+            "bg-white/0",
+            "cursor-pointer",
+            "hover:bg-gray-100/20",
+            "cursor-grab"
+          );
 
-        bookmarkElement.classList.add(
-          "bookmark",
-          "overflow",
-          "group",
-          "relative",
-          "flex",
-          "flex-col",
-          "items-center",
-          "p-1",
-          "rounded-md",
-          "bg-white/0",
-          "cursor-pointer",
-          "hover:bg-gray-100/20",
-          "cursor-grab"
-        );
-
-        const img = document.createElement("img");
-        img.src = faviconUrl;
-        img.alt = "Favicon";
-        img.classList.add(
-          "h-16",
-          "w-16",
-          "mb-2",
-          "rounded-full",
-          "cursor-pointer"
-        );
-        bookmarkElement.appendChild(img);
-
-        // img.onerror = function () {
-        //   this.src = defaultFaviconUrl; // If error, replace with default favicon
-        // };
-
-        img.onerror = function () {
-          // Create a button as an alternative favicon
-          const button = document.createElement("button");
-          button.classList.add(
+          const img = document.createElement("img");
+          img.src = faviconUrl;
+          img.alt = "Favicon";
+          img.classList.add(
             "h-16",
             "w-16",
             "mb-2",
             "rounded-full",
-            "flex",
+            "cursor-pointer"
+          );
+          bookmarkElement.appendChild(img);
+
+          // img.onerror = function () {
+          //   this.src = defaultFaviconUrl; // If error, replace with default favicon
+          // };
+
+          img.onerror = function () {
+            // Create a button as an alternative favicon
+            const button = document.createElement("button");
+            button.classList.add(
+              "h-16",
+              "w-16",
+              "mb-2",
+              "rounded-full",
+              "flex",
+              "items-center",
+              "justify-center"
+            );
+
+            // Set the background of the button to a custom image
+            const customImageUrl = "./media/icon128.png"; // Replace with your custom image path
+            button.style.backgroundImage = `url('${customImageUrl}')`;
+            button.style.backgroundSize = "cover"; // Make the image fit the actual size
+
+            // Create an inner element
+            const innerElement = document.createElement("div");
+            innerElement.textContent = title.charAt(0).toUpperCase(); // Get the first letter of the website
+            innerElement.classList.add(
+              "h-12",
+              "w-12",
+              "rounded-full",
+              "flex",
+              "items-center",
+              "justify-center",
+              "backdrop-blur",
+              "text-xl", // Make the text larger
+              "text-neutral-900",
+              "dark:text-neutral-300",
+              "bg-white/20",
+              "dark:bg-neutral-700/20"
+            ); // Adjust the size as needed
+
+            // Set the background of the inner element to bg-neutral-500/20
+            // innerElement.style.backgroundColor = "rgba(209, 213, 219, 0.1)"; // bg-neutral-500/20 in rgba
+
+            // Append the inner element to the button
+            button.appendChild(innerElement);
+            // Add a click event listener to the button
+            button.addEventListener("click", function () {
+              const link = url; // Assuming you've defined 'url' elsewhere in your code
+              if (link.includes("https://")) {
+                window.location.href = link;
+              } else {
+                window.location.href = "https://" + link;
+              }
+            });
+
+            // Replace the image with the button
+            this.replaceWith(button);
+          };
+
+          const pTitle = document.createElement("p");
+          pTitle.textContent = title;
+          pTitle.classList.add(
+            "titleBookmark",
+            "justify-items-center",
             "items-center",
-            "justify-center"
+            "py-1",
+            "px-2",
+            "rounded-[50px]",
+            "max-w-[100px]",
+            "min-w-[75px]",
+            "text-neutral-800",
+            "dark:text-neutral-300",
+            "group-hover:bg-neutral-500/40",
+            "group-hover:dark:bg-neutral-400/50",
+            "text-sm",
+            "text-center",
+            "truncate",
+
+            "delay-150",
+            "duration-300",
+            "ease-in-out"
           );
 
-          // Set the background of the button to a custom image
-          const customImageUrl = "./media/icon128.png"; // Replace with your custom image path
-          button.style.backgroundImage = `url('${customImageUrl}')`;
-          button.style.backgroundSize = "cover"; // Make the image fit the actual size
+          bookmarkElement.appendChild(pTitle);
 
-          // Create an inner element
-          const innerElement = document.createElement("div");
-          innerElement.textContent = title.charAt(0).toUpperCase(); // Get the first letter of the website
-          innerElement.classList.add(
-            "h-12",
-            "w-12",
-            "rounded-full",
-            "flex",
-            "items-center",
-            "justify-center",
+          // let link = localStorage.getItem(url);
+
+          const editButton = document.createElement("button");
+          editButton.setAttribute("id", "eButton");
+          editButton.classList.add(
+            "editBookmark",
+            // "sm:display:none",
+            "absolute",
+            "hidden",
+            "group-hover:block",
+            "text-xl",
+            "rounded-r-full",
+            "p-1.5",
+            "top-[-1px]",
+            "left-[0px]",
             "backdrop-blur",
-            "text-xl", // Make the text larger
-            "text-neutral-900",
+            "bg-neutral-300/30",
+            "dark:bg-neutral-700/30",
+            "dark:hover:bg-neutral-700",
+            "hover:bg-white",
+            "dark:text-white",
+            "text-neutral-500",
+            "hover:text-neutral-900",
+            "dark:hover:text-white"
+          );
+          editButton.dataset.index = index;
+          editButton.textContent = "Edit";
+          bookmarkElement.appendChild(editButton);
+
+          // const deleteButton = document.createElement("button");
+          // deleteButton.setAttribute("id", "dButton");
+          // deleteButton.classList.add(
+          //   "deleteBookmark",
+          //   "sm:display:none",
+          //   "absolute",
+          //   "hidden",
+          //   "md:group-hover:block",
+          //   "text-lg",
+          //   "rounded-l-full",
+          //   "p-1.5",
+          //   "top-[-1px]",
+          //   "right-[0px]",
+          //   "backdrop-blur",
+          //   "bg-neutral-300/30",
+          //   "dark:bg-neutral-700/30",
+          //   "dark:hover:bg-red-600",
+          //   "hover:bg-red-600",
+          //   "dark:text-white",
+          //   "text-neutral-500",
+          //   "hover:text-white",
+          //   "hover:text-white"
+          // );
+          // deleteButton.textContent = "❌";
+          // bookmarkElement.appendChild(deleteButton);
+          img.addEventListener("click", () => {
+            const link = url; // Assuming you've defined 'url' elsewhere in your code
+            if (!isMouseOver) {
+              if (link.includes("https://")) {
+                window.location.href = link;
+              } else {
+                window.location.href = "https://" + link;
+              }
+            }
+          });
+
+          return bookmarkElement;
+        }
+
+        function renderBookmarks() {
+          bookmarks.forEach((bookmark, index) => {
+            const bookmarkElement = createBookmarkElement(bookmark, index);
+            bookmarksContainer.appendChild(bookmarkElement);
+            bookmarkElement.classList.add("cursor-grabbing");
+
+            bookmarkElement.addEventListener("mouseover", function () {
+              // Change the trashButton's background color to red and increase its size by 20%
+              console.log("mouseover true");
+              // trashButton.style.backgroundColor = "red";
+              // trashButton.style.transform = "scale(1.2)";
+
+              // Set isMouseOver to true
+              isMouseOver = true;
+            });
+
+            bookmarkElement.addEventListener("mouseout", function () {
+              console.log("mouseover false");
+              // Set isMouseOver back to false when the mouse leaves the element
+              isMouseOver = false;
+            });
+
+            bookmarkElement.addEventListener("click", () => {
+              // Only execute the click event handler if isMouseOver is false
+              if (!isMouseOver) {
+                console.log("mouseover false");
+                const link = url; // Assuming you've defined 'url' elsewhere in your code
+                if (link.includes("https://")) {
+                  window.location.href = link;
+                } else {
+                  window.location.href = "https://" + link;
+                }
+              }
+            });
+          });
+          let timeoutId;
+          let sortTimeoutId; // Declare a variable to hold the timeout outside the functions
+
+          // Create a new Sortable instance for the bookmarks container
+          new Sortable(bookmarksContainer, {
+            supportPointer: false,
+            animation: 150,
+            onEnd: function (event) {
+              // Remove the bookmark from the old position and insert it at the new position
+              if (event.oldIndex !== event.newIndex) {
+                const bookmark = bookmarks.splice(event.oldIndex, 1)[0];
+                bookmarks.splice(event.newIndex, 0, bookmark);
+
+                // Update the bookmarks array in local storage
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+
+                // Clear the bookmarks container and re-render the bookmarks after 2 seconds
+                sortTimeoutId = setTimeout(function () {
+                  location.reload();
+                }, 1500); // 2000 milliseconds = 2 seconds
+              }
+
+              event.item.style.opacity = "";
+              event.item.style.backdropFilter = "";
+            },
+
+            onStart: function (event) {
+              // Make the dragged item 20% transparent and apply a backdrop blur
+              event.item.style.opacity = "0";
+              event.item.style.backdropFilter = "blur(4px)";
+
+              // If a timeout is ongoing, clear it
+              if (sortTimeoutId) {
+                clearTimeout(sortTimeoutId);
+              }
+            },
+          });
+        }
+      } else {
+        // Create a bookmark element
+        function createBookmarkElement(bookmark, index) {
+          const { title, url } = bookmark;
+          const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
+          const bookmarkElement = document.createElement("div");
+
+          bookmarkElement.classList.add(
+            "bookmark",
+            "overflow",
+            "group",
+            "relative",
+            "flex",
+            "flex-col",
+            "items-center",
+            "p-1",
+            "rounded-md",
+            "bg-white/0",
+            "cursor-pointer",
+            "hover:bg-gray-100/20",
+            "cursor-grab"
+          );
+
+          const img = document.createElement("img");
+          img.src = faviconUrl;
+          img.alt = "Favicon";
+          img.classList.add(
+            "h-16",
+            "w-16",
+            "mb-2",
+            "rounded-full",
+            "cursor-pointer"
+          );
+          bookmarkElement.appendChild(img);
+
+          // img.onerror = function () {
+          //   this.src = defaultFaviconUrl; // If error, replace with default favicon
+          // };
+
+          img.onerror = function () {
+            // Create a button as an alternative favicon
+            const button = document.createElement("button");
+            button.classList.add(
+              "h-16",
+              "w-16",
+              "mb-2",
+              "rounded-full",
+              "flex",
+              "items-center",
+              "justify-center"
+            );
+
+            // Set the background of the button to a custom image
+            const customImageUrl = "./media/icon128.png"; // Replace with your custom image path
+            button.style.backgroundImage = `url('${customImageUrl}')`;
+            button.style.backgroundSize = "cover"; // Make the image fit the actual size
+
+            // Create an inner element
+            const innerElement = document.createElement("div");
+            innerElement.textContent = title.charAt(0).toUpperCase(); // Get the first letter of the website
+            innerElement.classList.add(
+              "h-12",
+              "w-12",
+              "rounded-full",
+              "flex",
+              "items-center",
+              "justify-center",
+              "backdrop-blur",
+              "text-xl", // Make the text larger
+              "text-neutral-900",
+              "dark:text-neutral-300",
+              "bg-white/20",
+              "dark:bg-neutral-700/20"
+            ); // Adjust the size as needed
+
+            // Set the background of the inner element to bg-neutral-500/20
+            // innerElement.style.backgroundColor = "rgba(209, 213, 219, 0.1)"; // bg-neutral-500/20 in rgba
+
+            // Append the inner element to the button
+            button.appendChild(innerElement);
+            // Add a click event listener to the button
+            button.addEventListener("click", function () {
+              const link = url; // Assuming you've defined 'url' elsewhere in your code
+              if (link.includes("https://")) {
+                window.location.href = link;
+              } else {
+                window.location.href = "https://" + link;
+              }
+            });
+
+            // Replace the image with the button
+            this.replaceWith(button);
+          };
+
+          const pTitle = document.createElement("p");
+          pTitle.textContent = title;
+          pTitle.classList.add(
+            "titleBookmark",
+            "justify-items-center",
+            "items-center",
+            "py-1",
+            "px-2",
+            "rounded-[50px]",
+            "max-w-[100px]",
+            "min-w-[75px]",
+            "text-neutral-800",
             "dark:text-neutral-300",
-            "bg-white/20",
-            "dark:bg-neutral-700/20"
-          ); // Adjust the size as needed
+            "group-hover:bg-neutral-500/40",
+            "group-hover:dark:bg-neutral-400/50",
+            "text-sm",
+            "text-center",
+            "truncate",
 
-          // Set the background of the inner element to bg-neutral-500/20
-          // innerElement.style.backgroundColor = "rgba(209, 213, 219, 0.1)"; // bg-neutral-500/20 in rgba
+            "delay-150",
+            "duration-300",
+            "ease-in-out"
+          );
 
-          // Append the inner element to the button
-          button.appendChild(innerElement);
-          // Add a click event listener to the button
-          button.addEventListener("click", function () {
+          bookmarkElement.appendChild(pTitle);
+
+          // let link = localStorage.getItem(url);
+
+          img.addEventListener("click", () => {
             const link = url; // Assuming you've defined 'url' elsewhere in your code
             if (link.includes("https://")) {
               window.location.href = link;
@@ -1611,183 +1916,140 @@
             }
           });
 
-          // Replace the image with the button
-          this.replaceWith(button);
-        };
+          const editButton = document.createElement("button");
+          editButton.setAttribute("id", "eButton");
+          editButton.classList.add(
+            "editBookmark",
+            "absolute",
+            "hidden",
+            "group-hover:block",
+            "text-lg",
+            "rounded-r-full",
+            "p-1.5",
+            "top-[-1px]",
+            "left-[0px]",
+            "backdrop-blur",
+            "bg-neutral-300/30",
+            "dark:bg-neutral-700/30",
+            "dark:hover:bg-neutral-700",
+            "hover:bg-white",
+            "dark:text-white",
+            "text-neutral-500",
+            "hover:text-neutral-900",
+            "dark:hover:text-white"
+          );
+          editButton.dataset.index = index;
+          editButton.textContent = "🖍️";
+          bookmarkElement.appendChild(editButton);
 
-        const pTitle = document.createElement("p");
-        pTitle.textContent = title;
-        pTitle.classList.add(
-          "titleBookmark",
-          "justify-items-center",
-          "items-center",
-          "py-1",
-          "px-2",
-          "rounded-[50px]",
-          "max-w-[100px]",
-          "min-w-[75px]",
-          "text-neutral-800",
-          "dark:text-neutral-300",
-          "group-hover:bg-neutral-500/40",
-          "group-hover:dark:bg-neutral-400/50",
-          "text-sm",
-          "text-center",
-          "truncate",
+          const deleteButton = document.createElement("button");
+          deleteButton.setAttribute("id", "dButton");
+          deleteButton.classList.add(
+            "deleteBookmark",
+            "absolute",
+            "hidden",
+            "group-hover:block",
+            "text-lg",
+            "rounded-l-full",
+            "p-1.5",
+            "top-[-1px]",
+            "right-[0px]",
+            "backdrop-blur",
+            "bg-neutral-300/30",
+            "dark:bg-neutral-700/30",
+            "dark:hover:bg-red-600",
+            "hover:bg-red-600",
+            "dark:text-white",
+            "text-neutral-500",
+            "hover:text-white",
+            "hover:text-white"
+          );
+          deleteButton.textContent = "❌";
+          bookmarkElement.appendChild(deleteButton);
 
-          "delay-150",
-          "duration-300",
-          "ease-in-out"
-        );
+          return bookmarkElement;
+        }
 
-        bookmarkElement.appendChild(pTitle);
+        function renderBookmarks() {
+          bookmarks.forEach((bookmark, index) => {
+            const bookmarkElement = createBookmarkElement(bookmark, index);
+            bookmarksContainer.appendChild(bookmarkElement);
+            bookmarkElement.classList.add("cursor-grabbing");
+          });
+          let timeoutId;
+          let sortTimeoutId; // Declare a variable to hold the timeout outside the functions
 
-        // let link = localStorage.getItem(url);
+          // Create a new Sortable instance for the bookmarks container
+          new Sortable(bookmarksContainer, {
+            supportPointer: false,
+            animation: 150,
+            onEnd: function (event) {
+              // Remove the bookmark from the old position and insert it at the new position
+              if (event.oldIndex !== event.newIndex) {
+                const bookmark = bookmarks.splice(event.oldIndex, 1)[0];
+                bookmarks.splice(event.newIndex, 0, bookmark);
 
-        img.addEventListener("click", () => {
-          const link = url; // Assuming you've defined 'url' elsewhere in your code
-          if (link.includes("https://")) {
-            window.location.href = link;
-          } else {
-            window.location.href = "https://" + link;
-          }
-        });
+                // Update the bookmarks array in local storage
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
 
-        const editButton = document.createElement("button");
-        editButton.setAttribute("id", "eButton");
-        editButton.classList.add(
-          "editBookmark",
-          "sm:display:none",
-          "absolute",
-          "hidden",
-          "md:group-hover:block",
-          "text-lg",
-          "rounded-r-full",
-          "p-1.5",
-          "top-[-1px]",
-          "left-[0px]",
-          "backdrop-blur",
-          "bg-neutral-300/30",
-          "dark:bg-neutral-700/30",
-          "dark:hover:bg-neutral-700",
-          "hover:bg-white",
-          "dark:text-white",
-          "text-neutral-500",
-          "hover:text-neutral-900",
-          "dark:hover:text-white"
-        );
-        editButton.dataset.index = index;
-        editButton.textContent = "🖍️";
-        bookmarkElement.appendChild(editButton);
-
-        const deleteButton = document.createElement("button");
-        deleteButton.setAttribute("id", "dButton");
-        deleteButton.classList.add(
-          "deleteBookmark",
-          "sm:display:none",
-          "absolute",
-          "hidden",
-          "md:group-hover:block",
-          "text-lg",
-          "rounded-l-full",
-          "p-1.5",
-          "top-[-1px]",
-          "right-[0px]",
-          "backdrop-blur",
-          "bg-neutral-300/30",
-          "dark:bg-neutral-700/30",
-          "dark:hover:bg-red-600",
-          "hover:bg-red-600",
-          "dark:text-white",
-          "text-neutral-500",
-          "hover:text-white",
-          "hover:text-white"
-        );
-        deleteButton.textContent = "❌";
-        bookmarkElement.appendChild(deleteButton);
-
-        return bookmarkElement;
-      }
-
-      function renderBookmarks() {
-        bookmarks.forEach((bookmark, index) => {
-          const bookmarkElement = createBookmarkElement(bookmark, index);
-          bookmarksContainer.appendChild(bookmarkElement);
-          bookmarkElement.classList.add("cursor-grabbing");
-        });
-        let timeoutId;
-        let sortTimeoutId; // Declare a variable to hold the timeout outside the functions
-
-        // Create a new Sortable instance for the bookmarks container
-        new Sortable(bookmarksContainer, {
-          supportPointer: false,
-          animation: 150,
-          onEnd: function (event) {
-            // Remove the bookmark from the old position and insert it at the new position
-            if (event.oldIndex !== event.newIndex) {
-              const bookmark = bookmarks.splice(event.oldIndex, 1)[0];
-              bookmarks.splice(event.newIndex, 0, bookmark);
-
-              // Update the bookmarks array in local storage
-              localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
-              // Clear the bookmarks container and re-render the bookmarks after 2 seconds
-              sortTimeoutId = setTimeout(function () {
-                location.reload();
-                // bookmarksContainer.innerHTML = "";
-                // renderBookmarks();
-              }, 2000); // 2000 milliseconds = 2 seconds
-            }
-
-            event.item.style.opacity = "";
-            event.item.style.backdropFilter = "";
-          },
-
-          onStart: function (event) {
-            // Make the dragged item 20% transparent and apply a backdrop blur
-            event.item.style.opacity = "0";
-            event.item.style.backdropFilter = "blur(4px)";
-
-            // If a timeout is ongoing, clear it
-            if (sortTimeoutId) {
-              clearTimeout(sortTimeoutId);
-            }
-
-            // Delayed drag handler for mousemove and touchmove
-            event.item.addEventListener(
-              "mousemove",
-              delayeDragTouchMoveHandler
-            );
-            event.item.addEventListener(
-              "touchmove",
-              delayeDragTouchMoveHandler
-            );
-            event.item.addEventListener(
-              "touchstart",
-              delayeDragTouchMoveHandler
-            );
-
-            function delayeDragTouchMoveHandler(e) {
-              // Start a timeout to trigger the event after a delay
-              timeoutId = setTimeout(function () {
-                // Your action here
-              }, 2000); // 3000 milliseconds = 3 seconds
-            }
-
-            // Disable drag handler for mouseup, touchend, and touchcancel
-            event.item.addEventListener("mouseup", disableDelayedDrag);
-            event.item.addEventListener("touchend", disableDelayedDrag);
-            event.item.addEventListener("touchcancel", disableDelayedDrag);
-
-            function disableDelayedDrag(e) {
-              // If a timeout is ongoing, clear it
-              if (timeoutId) {
-                clearTimeout(timeoutId);
+                // Clear the bookmarks container and re-render the bookmarks after 2 seconds
+                sortTimeoutId = setTimeout(function () {
+                  location.reload();
+                  // bookmarksContainer.innerHTML = "";
+                  // renderBookmarks();
+                }, 1500); // 2000 milliseconds = 2 seconds
               }
-            }
-          },
-        });
-      }
 
+              event.item.style.opacity = "";
+              event.item.style.backdropFilter = "";
+            },
+
+            onStart: function (event) {
+              // Make the dragged item 20% transparent and apply a backdrop blur
+              event.item.style.opacity = "0";
+              event.item.style.backdropFilter = "blur(4px)";
+
+              // If a timeout is ongoing, clear it
+              if (sortTimeoutId) {
+                clearTimeout(sortTimeoutId);
+              }
+
+              // Delayed drag handler for mousemove and touchmove
+              event.item.addEventListener(
+                "mousemove",
+                delayeDragTouchMoveHandler
+              );
+              event.item.addEventListener(
+                "touchmove",
+                delayeDragTouchMoveHandler
+              );
+              event.item.addEventListener(
+                "touchstart",
+                delayeDragTouchMoveHandler
+              );
+
+              function delayeDragTouchMoveHandler(e) {
+                // Start a timeout to trigger the event after a delay
+                timeoutId = setTimeout(function () {
+                  // Your action here
+                }, 1000); // 3000 milliseconds = 3 seconds
+              }
+
+              // Disable drag handler for mouseup, touchend, and touchcancel
+              event.item.addEventListener("mouseup", disableDelayedDrag);
+              event.item.addEventListener("touchend", disableDelayedDrag);
+              event.item.addEventListener("touchcancel", disableDelayedDrag);
+
+              function disableDelayedDrag(e) {
+                // If a timeout is ongoing, clear it
+                if (timeoutId) {
+                  clearTimeout(timeoutId);
+                }
+              }
+            },
+          });
+        }
+      }
       // Add bookmark
       addBookmarkButton.addEventListener("click", () => {
         bookmarkUrl.focus();
