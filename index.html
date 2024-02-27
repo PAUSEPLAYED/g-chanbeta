@@ -44,7 +44,7 @@
     <!-- ADD MODAL -->
     <div
       id="add-modal"
-      class="overflow-y-auto invisible absolute flex top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full z-30"
+      class="overflow-y-auto invisible absolute flex top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full z-50"
     >
       <div class="relative p-4 w-full max-w-md max-h-full">
         <div
@@ -93,13 +93,35 @@
             >
               Add shortcut
             </h3>
-            <input
-              type="url"
-              id="bookmarkUrl"
-              placeholder="Enter weebsite URL"
-              class="w-full p-2 mb-4 cursor-text rounded-full pl-4 pr-4 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500"
-              autofocus
-            />
+            <div class="relative">
+              <input
+                type="url"
+                id="bookmarkUrl"
+                placeholder="Enter website URL"
+                spellcheck="false"
+                class="w-full p-2 mb-4 cursor-text rounded-full pl-4 pr-4 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500"
+                autofocus
+              />
+              <button
+                id="addclearButton"
+                class="absolute p-1 right-0 top-0 mt-1 mr-1.5 rounded-full hover:drop-shadow-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-900 transition duration-75 hover:bg-neutral-50 dark:text-white dark:hover:bg-neutral-950"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-500"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
             <button
               onclick="addmodal()"
               id="addBookmark"
@@ -124,7 +146,7 @@
     <!-- EDIT MODAL -->
     <div
       id="edit-modal"
-      class="overflow-y-auto invisible absolute flex top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full z-30"
+      class="overflow-y-auto invisible absolute flex top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full z-50"
     >
       <div class="relative p-4 w-full max-w-md max-h-full">
         <div
@@ -173,12 +195,35 @@
             >
               Edit shortcut
             </h3>
-            <input
-              type="url"
-              id="editbookmarkUrl"
-              class="w-full p-2 mb-4 cursor-text rounded-full pl-4 pr-4 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500"
-              autofocus
-            />
+            <div class="relative">
+              <input
+                type="url"
+                id="editbookmarkUrl"
+                placeholder="Enter website URL"
+                spellcheck="false"
+                class="w-full p-2 mb-4 cursor-text rounded-full pl-4 pr-4 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500"
+                autofocus
+              />
+              <button
+                id="editClearButton"
+                class="absolute p-1 right-0 top-0 mt-1 mr-1.5 rounded-full hover:drop-shadow-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-900 transition duration-75 hover:bg-neutral-50 dark:text-white dark:hover:bg-neutral-950"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6 text-gray-500"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
             <button
               onclick="editmodal()"
               id="saveBookmark"
@@ -209,7 +254,7 @@
       <div id="div1">
         <div
           id="wrapper"
-          class="relative flex justify-items-center z-1 h-[500px] w-[100%]"
+          class="relative flex justify-items-center z-1 h-[500px] w-[100%] sm:pt-[10px]"
         >
           <div
             id="background"
@@ -217,14 +262,14 @@
           ></div>
           <div
             onclick="toggleRefresh()"
-            class="z-10 absolute bg-center h-[500px] w-full cursor-pointer"
+            class="z-10 absolute bg-center md:h-[500px] sm:h-[400px] w-full cursor-pointer"
           ></div>
           <!--BG IMPLEMENT-->
         </div>
 
         <div
           id="div2"
-          class="absolute z-10 flex items-center justify-center md:pl-[250px] md:pt-[78px] pointer-events-none"
+          class="absolute z-10 flex items-center justify-center md:pl-[250px] md:pt-[73px] pointer-events-none"
         >
           <div
             class="absolute grid grid-rows-4 gap-[8px] sm:w-screen md:w-[650px] sm:left-0 sm:pb-[50px] pointer-events-none"
@@ -253,147 +298,85 @@
 
             <div
               id="searchbar"
-              class="sm:flex sm:mt-[0px] sm:w-[100%] md:mt-[0px] md:w-[650px] pointer-events-auto"
+              class="sm:flex sm:mt-[0px] md:mt-[0px] sm:w-[100%] md:w-[650px] pointer-events-auto"
             >
               <!-- md:max-w-[600px] -->
               <form
-                onclick="toggleClear()"
                 action="https://google.com/search"
                 method="get"
                 class="relative rounded-full group block bg-neutral-800"
               >
                 <!--  search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600 search-cancel:cursor-pointer search-cancel:w-6 search-cancel:h-6 search-cancel:bg-[url(/xbutton.svg) -->
-                <input
-                  id="searchform"
-                  name="q"
-                  type="search"
-                  class="z-3 sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
-                  placeholder="Search G-chan or type a Waifu"
-                  spellcheck="false"
-                />
-                <button
-                  onclick="toggleClear()"
-                  id="settings-button"
-                  type="button"
-                  class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
-                >
-                  <svg
-                    onclick="toggleSlideover()"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="cursor-pointer"
-                    fill="currentColor"
-                    viewBox="0 0 19 19"
-                    data-drawer-target="drawernavi"
-                    data-drawer-show="drawernavi"
-                    aria-controls="drawernavi"
-                    data-drawer-backdrop="false"
+                <div class="absolute">
+                  <input
+                    type="search"
+                    id="searchform"
+                    name="q"
+                    placeholder="Search G-chan or type a Waifu"
+                    spellcheck="false"
+                    class="z-3 sm:w-screen md:w-[650px] h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
+                  />
+
+                  <button
+                    id="settings-button"
+                    type="button"
+                    class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
                   >
-                    <path
-                      d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  id="xbutton"
-                  type="reset"
-                  class="z-1 invisible absolute pt-2 right-1 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400"
-                >
-                  <svg
-                    xmlns="/xbutton.svg"
-                    fill="currentColor"
-                    viewBox="0 0 19 19"
-                    aria-label="Reset"
-                  >
-                    <path
-                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  type="reset"
-                  class="absolute visible z-0 pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full dark:text-neutral-900 text-neutral-400"
-                >
-                  <svg
-                    id="magnify"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 30 30"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-label="Reset"
-                  >
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </button>
-
-                <!-- SEARCHBAR -->
-                <!-- <input
-          id="searchform"
-          name="q"
-          type="search"
-          class="z-3 sm:w-screen md:w-full h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-out focus:ease-out duration-300 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
-          placeholder="Search G-chan or type a Waifu"
-        />
-        <button
-          onclick="toggleClear()"
-          id="settings-button"
-          type="button"
-          class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
-        >
-          <svg
-            onclick="toggleSlideover()"
-            xmlns="http://www.w3.org/2000/svg"
-            class="cursor-pointer"
-            fill="currentColor"
-            viewBox="0 0 19 19"
-            data-drawer-target="drawernavi"
-            data-drawer-show="drawernavi"
-            aria-controls="drawernavi"
-            data-drawer-backdrop="false"
-          >
-            <path
-              d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
-            />
-          </svg>
-        </button>
-
-        <button
-          id="xbutton"
-          type="reset"
-          class="z-1 invisible absolute pt-2 right-1 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
-        >
-          <svg
-            xmlns="/xbutton.svg"
-            fill="currentColor"
-            viewBox="0 0 19 19"
-            aria-label="Reset"
-          >
-            <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
-            />
-          </svg>
-        </button>
-
-        <button
-          type="reset"
-          class="absolute visible z-0 pt-1 right-0 h-12 w-12 inset-y-0 my-auto mx-1 focus:ease-out duration-[300ms] rounded-full dark:text-neutral-900 text-neutral-400"
-        >
-          <svg
-            id="magnify"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 30 30"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-label="Reset"
-          >
-            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </button> -->
-                <!-- SEARCHBAR -->
+                    <svg
+                      onclick="toggleSlideover()"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="cursor-pointer"
+                      fill="currentColor"
+                      viewBox="0 0 19 19"
+                      data-drawer-target="drawernavi"
+                      data-drawer-show="drawernavi"
+                      aria-controls="drawernavi"
+                      data-drawer-backdrop="false"
+                    >
+                      <path
+                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </form>
+              <button
+                id="searchClearButton"
+                class="absolute justify-center items-center mt-1 pb-1.5 pl-2 right-1 h-12 w-12 rounded-full hover:ease-out focus:ease-out duration-[300ms] dark:bg-neutral-900 bg-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-950 dark:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+              >
+                <!-- Magnifying glass SVG -->
+                <svg
+                  id="searchIcon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 19 19"
+                  stroke="currentColor"
+                  class="h-6 w-6 0"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+                <!-- 'X' SVG -->
+                <svg
+                  id="clearIcon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 19 19"
+                  stroke="currentColor"
+                  class="h-6 w-6 hidden"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
             </div>
             <div class="col-span-0"></div>
             <div class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto">
@@ -453,7 +436,7 @@
       <!-- class="fixed -->
       <div
         id="slideover-container"
-        class="w-full h-full fixed inset-0 invisible cursor-pointer"
+        class="w-full h-full z-30 fixed inset-0 invisible cursor-pointer"
       >
         <div
           onclick="toggleSlideover()"
@@ -1482,10 +1465,36 @@
         location.reload();
       }
 
-      function toggleClear() {
-        document.getElementById("xbutton").classList.toggle("invisible");
-        document.getElementById("magnify").classList.toggle("hidden");
-      }
+      const searchFormInput = document.getElementById("searchform");
+      const searchClearButton = document.getElementById("searchClearButton");
+      const searchIcon = document.getElementById("searchIcon");
+      const clearIcon = document.getElementById("clearIcon");
+
+      // Show the correct icon when the user types into the input field
+      searchFormInput.addEventListener("input", () => {
+        if (searchFormInput.value) {
+          searchIcon.classList.add("hidden");
+          clearIcon.classList.remove("hidden");
+        } else {
+          searchIcon.classList.remove("hidden");
+          clearIcon.classList.add("hidden");
+        }
+      });
+
+      // Clear the input field and show the search icon when the clear button is clicked
+      searchClearButton.addEventListener("click", (event) => {
+        // Prevent the search from being activated
+        event.preventDefault();
+
+        searchFormInput.value = "";
+        searchIcon.classList.remove("hidden");
+        clearIcon.classList.add("hidden");
+      });
+
+      // Do nothing when the search icon is clicked
+      searchIcon.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
 
       // function myfunction() {
       //   var answer = window.orientation > 1;
@@ -2142,10 +2151,16 @@
         }
       }
       // Add bookmark
-      addBookmarkButton.addEventListener("click", () => {
+      // Add the event listener
+      addBookmarkButton.addEventListener("click", addBookmark);
+      function addBookmark() {
         bookmarkUrl.focus();
-        const url = bookmarkUrlInput.value.trim();
+        let url = bookmarkUrlInput.value.trim();
         if (url) {
+          // Prepend 'https://' if not present
+          if (!url.startsWith("https://")) {
+            url = "https://" + url;
+          }
           const title = url
             .replace(/^(https?:\/\/)?(www\.)?/, "")
             .replace(/\..*$/, "");
@@ -2160,10 +2175,29 @@
           // Re-render the bookmarks
           location.reload();
         }
+      }
+
+      const addclearButton = document.getElementById("addclearButton");
+
+      // Hide the clear button when the input field is empty
+      addclearButton.style.display = bookmarkUrlInput.value ? "" : "none";
+
+      // Show the clear button when the user types into the input field
+      bookmarkUrlInput.addEventListener("input", () => {
+        addclearButton.style.display = bookmarkUrlInput.value ? "" : "none";
+      });
+
+      // Clear the input field and hide the clear button when the clear button is clicked
+      addclearButton.addEventListener("click", () => {
+        bookmarkUrlInput.value = "";
+        addclearButton.style.display = "none";
       });
 
       // Edit bookmark
-      bookmarksContainer.addEventListener("click", (event) => {
+      // Define the function
+      // Add the event listener
+      bookmarksContainer.addEventListener("click", editBookmark);
+      function editBookmark(event) {
         if (event.target.classList.contains("editBookmark")) {
           editbookmarkUrl.focus();
           const index = event.target.dataset.index;
@@ -2171,7 +2205,10 @@
           const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
 
           // Get the URL of the bookmark at the given index
-          const url = bookmarks[index].url;
+          let url = bookmarks[index].url;
+
+          // Remove 'https://' from the URL for display
+          url = url.replace(/^https:\/\//, "");
 
           // Get the input field
           const inputField = document.getElementById("editbookmarkUrl");
@@ -2181,8 +2218,12 @@
 
           editBookmarkButton.addEventListener("click", () => {
             const url = bookmarkUrlInput.value.trim();
-            const newUrl = inputField.value;
+            let newUrl = inputField.value;
             if (newUrl) {
+              // Prepend 'https://' to the URL if not present
+              if (!newUrl.startsWith("https://")) {
+                newUrl = "https://" + newUrl;
+              }
               const newTitle = newUrl
                 .replace(/^(https?:\/\/)?(www\.)?/, "")
                 .replace(/\..*$/, "");
@@ -2207,7 +2248,38 @@
             .getElementById("slideover-bg")
             .classList.toggle("opacity-[100]");
         }
+      }
+
+      const editBookmarkUrlInput = document.getElementById("editbookmarkUrl");
+      const editClearButton = document.getElementById("editClearButton");
+
+      // Hide the clear button when the input field is empty
+      editClearButton.style.display = editBookmarkUrlInput.value ? "" : "none";
+
+      // Show the clear button when the user types into the input field
+      editBookmarkUrlInput.addEventListener("input", () => {
+        editClearButton.style.display = editBookmarkUrlInput.value
+          ? ""
+          : "none";
       });
+
+      // Clear the input field and hide the clear button when the clear button is clicked
+      editClearButton.addEventListener("click", () => {
+        editBookmarkUrlInput.value = "";
+        editClearButton.style.display = "none";
+      });
+      // Call the function
+      // Note: You'll need to pass an event object to the function when you call it.
+      // This event object should mimic the structure of a real event object.
+      // editBookmark({
+      //   target: {
+      //     classList: {
+      //       contains: function () {
+      //         return true;
+      //       },
+      //     },
+      //   },
+      // });
 
       // Delete bookmark
       bookmarksContainer.addEventListener("click", (event) => {
