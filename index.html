@@ -24,23 +24,15 @@
     <link rel="icon" type="image/svg+xml" href="./xbutton.svg" />
     <!-- <link rel="icon" type="image/svg+xml" href="/xbutton.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    /> -->
-    <!-- <script src="https://unpkg.com/swappable@1.0.0/dist/swappable.min.js"></script> -->
-    <!-- <script type="module" src="src/cookie.js"></script> -->
 
     <title>G-chan beta</title>
     <script type="module" crossorigin src="./entry/main.js"></script>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
 
   <body
@@ -270,28 +262,31 @@
             id="preloader"
             class="absolute inset-0 flex items-center justify-center"
           >
-            <!-- <div
-              class="spinner-grow text-light mt-[100px] w-[150px] h-[150px]"
-            ></div> -->
-
-            <div role="status">
-              <svg
-                aria-hidden="true"
-                class="w-20 h-20 mt-[100px] text-gray-200 animate-spin dark:text-neutral-500 fill-neutral-800"
-                viewBox="0 0 100 101"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            <div
+              class="absolute top-1/2 left-1/2 md:mt-[50px] -ml-2 h-8 w-4 scale-[2.5] text-neutral-200 dark:text-neutral-800 drop-shadow-md"
+            >
+              <div class="absolute z-10 -ml-2 h-8 w-8 animate-bounce">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="animate-spin"
                   fill="currentColor"
-                />
-                <path
-                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                  fill="currentFill"
-                />
-              </svg>
-              <span class="sr-only">Loading...</span>
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 4c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4zM12.773 12.773c-1.275 1.275-2.97 1.977-4.773 1.977s-3.498-0.702-4.773-1.977-1.977-2.97-1.977-4.773c0-1.803 0.702-3.498 1.977-4.773l1.061 1.061c0 0 0 0 0 0-2.047 2.047-2.047 5.378 0 7.425 0.992 0.992 2.31 1.538 3.712 1.538s2.721-0.546 3.712-1.538c2.047-2.047 2.047-5.378 0-7.425l1.061-1.061c1.275 1.275 1.977 2.97 1.977 4.773s-0.702 3.498-1.977 4.773z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-4 h-5 w-4 animate-bounce border-l-2 drop-shadow-lg border-neutral-500 dark:border-neutral-900"
+                style="rotate: -90deg"
+              ></div>
+              <div
+                class="absolute top-4 h-5 w-4 animate-bounce border-r-2 drop-shadow-lg border-neutral-500 dark:border-neutral-900"
+                style="rotate: 90deg"
+              ></div>
             </div>
           </div>
 
@@ -1037,6 +1032,50 @@
                       />
                     </li>
                     <li data-id="24" data-sef="googlbounce" class="bg relative">
+                      <svg
+                        version="1.1"
+                        id="L6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 100 100"
+                        enable-background="new 0 0 100 100"
+                        xml:space="preserve"
+                      >
+                        <rect
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4"
+                          x="25"
+                          y="25"
+                          width="50"
+                          height="50"
+                        >
+                          <animateTransform
+                            attributeName="transform"
+                            dur="0.5s"
+                            from="0 50 50"
+                            to="180 50 50"
+                            type="rotate"
+                            id="strokeBox"
+                            attributeType="XML"
+                            begin="rectBox.end"
+                          />
+                        </rect>
+                        <rect x="27" y="27" fill="#fff" width="46" height="50">
+                          <animate
+                            attributeName="height"
+                            dur="1.3s"
+                            attributeType="XML"
+                            from="50"
+                            to="0"
+                            id="rectBox"
+                            fill="freeze"
+                            begin="0s;strokeBox.end"
+                          />
+                        </rect>
+                      </svg>
                       <span
                         class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
@@ -1337,6 +1376,21 @@
       // let url = bookmarkUrlInput.value;
 
       document.onload = onRefreshLoad();
+
+      // Register the service worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/src/service-worker.js", { updateViaCache: "none" })
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+          })
+          .catch(function (error) {
+            console.log("Service Worker registration failed:", error);
+          });
+      }
 
       function toggleStopRandom() {
         if (localStorage.getItem("randombg") === "true") {
@@ -1801,77 +1855,6 @@
           const trashButton = document.getElementById("trashButton");
           let draggedBookmark;
 
-          // Create a new Sortable instance for the bookmarks container
-          // Create a new Sortable instance for the bookmarks container
-          // new Sortable(bookmarksContainer, {
-          //   supportPointer: false,
-          //   animation: 150,
-          //   onStart: function (event) {
-          //     // Make the dragged item 20% transparent and apply a backdrop blur
-          //     event.item.style.opacity = "0";
-          //     event.item.style.backdropFilter = "blur(4px)";
-          //     trashButton.style.backgroundColor = "red";
-          //     trashButton.style.transform = "scale(1.2)";
-
-          //     // Keep track of the bookmark that is being dragged
-          //     draggedBookmark = bookmarks[event.oldIndex];
-          //   },
-          //   onMove: function (event) {
-          //     // Get the bounding rectangles of the dragged item and the trashButton
-          //     const draggedRect = event.item.getBoundingClientRect();
-          //     const trashRect = trashButton.getBoundingClientRect();
-
-          //     // Check if the rectangles overlap
-          //     if (
-          //       draggedRect.right > trashRect.left &&
-          //       draggedRect.left < trashRect.right &&
-          //       draggedRect.bottom > trashRect.top &&
-          //       draggedRect.top < trashRect.bottom
-          //     ) {
-          //       // If they overlap, increase the size of the trashButton
-          //       trashButton.style.transform = "scale(1.4)";
-          //     } else {
-          //       // If they don't overlap, reset the size of the trashButton
-          //       trashButton.style.transform = "scale(1.2)";
-          //     }
-          //   },
-          //   onEnd: function (event) {
-          //     // Remove the bookmark from the old position and insert it at the new position
-          //     if (event.oldIndex !== event.newIndex) {
-          //       const bookmark = bookmarks.splice(event.oldIndex, 1)[0];
-          //       bookmarks.splice(event.newIndex, 0, bookmark);
-
-          //       // Update the bookmarks array in local storage
-          //       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
-          //       // Clear the bookmarks container and re-render the bookmarks after 2 seconds
-          //       sortTimeoutId = setTimeout(function () {
-          //         location.reload();
-          //       }, 1500); // 2000 milliseconds = 2 seconds
-          //     }
-
-          //     // Add 'drop' event listener to the trashButton
-          //     trashButton.addEventListener("drop", function (event) {
-          //       event.preventDefault(); // Prevent default action (open as link for some elements)
-
-          //       // Remove the bookmark from the bookmarks array
-          //       const index = bookmarks.indexOf(draggedBookmark);
-          //       if (index > -1) {
-          //         bookmarks.splice(index, 1);
-          //       }
-
-          //       // Update the bookmarks array in local storage
-          //       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-
-          //       // Refresh the page
-          //       location.reload();
-          //     });
-
-          //     event.item.style.opacity = "";
-          //     event.item.style.backdropFilter = "";
-          //   },
-          // });
-
           //Create a new Sortable instance for the bookmarks container
           new Sortable(bookmarksContainer, {
             supportPointer: false,
@@ -2305,18 +2288,6 @@
         editBookmarkUrlInput.value = "";
         editClearButton.style.display = "none";
       });
-      // Call the function
-      // Note: You'll need to pass an event object to the function when you call it.
-      // This event object should mimic the structure of a real event object.
-      // editBookmark({
-      //   target: {
-      //     classList: {
-      //       contains: function () {
-      //         return true;
-      //       },
-      //     },
-      //   },
-      // });
 
       // Delete bookmark
       bookmarksContainer.addEventListener("click", (event) => {
@@ -2335,8 +2306,6 @@
       // Initial rendering
       renderBookmarks();
     </script>
-
-    
 
     <!-- <script src="/src/flowbite.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
