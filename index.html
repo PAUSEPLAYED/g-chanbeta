@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en" class="dark scrollbar-hide">
   <head>
+    <!-- DARK MODE -->
+    
+    <!-- DARK MODE -->
     <title>G-chan Beta | PausePLayed</title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="G-chan Beta" />
@@ -24,7 +28,7 @@
     <link rel="icon" type="image/svg+xml" href="./xbutton.svg" />
     <!-- <link rel="icon" type="image/svg+xml" href="/xbutton.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    
     <!-- <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -32,7 +36,7 @@
 
     <title>G-chan beta</title>
     <script type="module" crossorigin src="./entry/main.js"></script>
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/index.css">
   </head>
 
   <body
@@ -616,7 +620,8 @@
                   <li>
                     <div class="relative flex items-center">
                       <div
-                        class="ml-5 rounded-full bg-neutral-300 w-20 toggler dark:bg-neutral-700 cursor-pointer"
+                        id="toggleDark"
+                        class="toggler ml-5 rounded-full bg-neutral-300 w-20 dark:bg-neutral-700 cursor-pointer"
                       >
                         <div
                           class="rounded-full bg-white w-10 h-10 scale-75 transition-transform dark:bg-neutral-900"
@@ -1032,50 +1037,6 @@
                       />
                     </li>
                     <li data-id="24" data-sef="googlbounce" class="bg relative">
-                      <svg
-                        version="1.1"
-                        id="L6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                        x="0px"
-                        y="0px"
-                        viewBox="0 0 100 100"
-                        enable-background="new 0 0 100 100"
-                        xml:space="preserve"
-                      >
-                        <rect
-                          fill="none"
-                          stroke="#fff"
-                          stroke-width="4"
-                          x="25"
-                          y="25"
-                          width="50"
-                          height="50"
-                        >
-                          <animateTransform
-                            attributeName="transform"
-                            dur="0.5s"
-                            from="0 50 50"
-                            to="180 50 50"
-                            type="rotate"
-                            id="strokeBox"
-                            attributeType="XML"
-                            begin="rectBox.end"
-                          />
-                        </rect>
-                        <rect x="27" y="27" fill="#fff" width="46" height="50">
-                          <animate
-                            attributeName="height"
-                            dur="1.3s"
-                            attributeType="XML"
-                            from="50"
-                            to="0"
-                            id="rectBox"
-                            fill="freeze"
-                            begin="0s;strokeBox.end"
-                          />
-                        </rect>
-                      </svg>
                       <span
                         class="absolute w-auto px-5 py-2 h-10 right-0 bottom-0 transition duration-75 rounded-full group text-neutral-900 bg-neutral-200/75 dark:text-white dark:bg-neutral-800/75"
                       >
@@ -1363,20 +1324,11 @@
     </div>
     <!-- drawer component -->
 
+    
+
     <script>
-      // Toggle Dark Functionality
-      let flag = true;
-      let flag2 = true;
-      const toggler = document.querySelector(".toggler");
-      const html = document.documentElement;
-      let darkMode = localStorage.getItem("darkMode");
-      var randombg = localStorage.getItem("randombg");
-
-      // let title = bookmarkTitleInput.value;
-      // let url = bookmarkUrlInput.value;
-
-      document.onload = onRefreshLoad();
-
+      ////////////////////////////////////BOOKMARKS////////////////////////////////////
+      // script.js
       // Register the service worker
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
@@ -1391,209 +1343,6 @@
             console.log("Service Worker registration failed:", error);
           });
       }
-
-      function toggleStopRandom() {
-        if (localStorage.getItem("randombg") === "true") {
-          localStorage.setItem("randombg", "false");
-        } else {
-          localStorage.setItem("randombg", "true");
-          location.reload();
-        }
-      }
-
-      function onRefreshLoad() {
-        if (localStorage.getItem("randombg") === "true") {
-          // $("#randomizebutton").attr("checked", "checked");
-          document
-            .getElementById("randomcircle")
-            .classList.toggle("translate-x-10");
-        } else {
-          // $("#randomizebutton").attr("checked", false);
-          document
-            .getElementById("randomcircle")
-            .classList.toggle("translate-x-0");
-        }
-
-        if (darkMode === "enabled") {
-          toggler.children[0].classList.toggle("translate-x-10");
-          html.classList.add("dark");
-          if (flag) {
-            // Toggle Dark Function
-            const toggleDark = () => {
-              toggler.addEventListener("click", () => {
-                toggler.children[0].classList.toggle("translate-x-0");
-                if (flag) {
-                  html.classList.remove("dark");
-                  localStorage.setItem("darkMode", "null");
-                  location.reload();
-                } else {
-                  toggler.children[0].classList.toggle("translate-x-0");
-                  html.classList.add("dark");
-                  localStorage.setItem("darkMode", "enable");
-                }
-                flag = !flag;
-              });
-            };
-            toggleDark();
-          }
-        }
-        if (darkMode === "null") {
-          toggler.children[0].classList.toggle("translate-x-0");
-          html.classList.remove("dark");
-        }
-
-        if (flag) {
-          // Toggle Dark Function
-          const toggleDark = () => {
-            toggler.addEventListener("click", () => {
-              toggler.children[0].classList.toggle("translate-x-10");
-              if (flag) {
-                html.classList.add("dark");
-                localStorage.setItem("darkMode", "enabled");
-              } else {
-                toggler.children[0].classList.toggle("translate-x-0");
-                html.classList.remove("dark");
-                localStorage.setItem("darkMode", null);
-              }
-              flag = !flag;
-            });
-          };
-          toggleDark();
-        }
-      }
-
-      $(document).on("click", "#settings-button", function (e) {});
-
-      function toggleCollapse() {
-        document
-          .getElementById("dropdown-container1")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container2")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container3")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container4")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container5")
-          .classList.toggle("hidden");
-        document
-          .getElementById("collapseButton")
-          .classList.toggle("rotate-180");
-        document.getElementById("collapseButton").classList.add("hidden");
-        document.getElementById("uncollapseButton").classList.remove("hidden");
-      }
-
-      function untoggleCollapse() {
-        document
-          .getElementById("dropdown-container1")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container2")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container3")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container4")
-          .classList.toggle("hidden");
-        document
-          .getElementById("dropdown-container5")
-          .classList.toggle("hidden");
-        document
-          .getElementById("collapseButton")
-          .classList.toggle("rotate-180");
-        document.getElementById("collapseButton").classList.remove("hidden");
-        document.getElementById("uncollapseButton").classList.add("hidden");
-      }
-
-      //MODAL FUNC
-      const modaladd = document.getElementById("add-modal");
-      const modaledit = document.getElementById("edit-modal");
-
-      function addmodal() {
-        bookmarkUrl.focus();
-        document.getElementById("add-modal").classList.toggle("invisible");
-        document
-          .getElementById("slideover-container")
-          .classList.toggle("invisible");
-        // document.getElementById("slideover-bg").classList.toggle("opacity-0");
-        document
-          .getElementById("slideover-bg")
-          .classList.toggle("opacity-[100]");
-      }
-
-      function editmodal() {
-        editbookmarkUrl.focus();
-        document.getElementById("edit-modal").classList.toggle("invisible");
-        document
-          .getElementById("slideover-container")
-          .classList.toggle("invisible");
-        // document.getElementById("slideover-bg").classList.toggle("opacity-0");
-        document
-          .getElementById("slideover-bg")
-          .classList.toggle("opacity-[100]");
-      }
-
-      function toggleSlideover() {
-        console.log("Slide Toggle");
-        document
-          .getElementById("slideover-container")
-          .classList.toggle("invisible");
-        // document.getElementById("slideover-bg").classList.toggle("opacity-0");
-        document
-          .getElementById("slideover-bg")
-          .classList.toggle("opacity-[100]");
-        document
-          .getElementById("drawernavi")
-          .classList.toggle("translate-x-full");
-      }
-
-      function toggleRefresh() {
-        location.reload();
-      }
-
-      const searchFormInput = document.getElementById("searchform");
-      const searchClearButton = document.getElementById("searchClearButton");
-      const searchIcon = document.getElementById("searchIcon");
-      const clearIcon = document.getElementById("clearIcon");
-
-      // Show the correct icon when the user types into the input field
-      searchFormInput.addEventListener("input", () => {
-        if (searchFormInput.value) {
-          searchIcon.classList.add("hidden");
-          clearIcon.classList.remove("hidden");
-        } else {
-          searchIcon.classList.remove("hidden");
-          clearIcon.classList.add("hidden");
-        }
-      });
-
-      // Clear the input field and show the search icon when the clear button is clicked
-      searchClearButton.addEventListener("click", (event) => {
-        // Prevent the search from being activated
-        event.preventDefault();
-
-        searchFormInput.value = "";
-        searchIcon.classList.remove("hidden");
-        clearIcon.classList.add("hidden");
-      });
-
-      // Do nothing when the search icon is clicked
-      searchIcon.addEventListener("click", (event) => {
-        event.preventDefault();
-      });
-
-      // function myfunction() {
-      //   var answer = window.orientation > 1;
-      //   alert(answer ? "It is a mobile device" : "It is not a mobile device");
-      // }
-
-      ////////////////////////////////////BOOKMARKS////////////////////////////////////
-      // script.js
       const bookmarksContainer = document.getElementById("bookmarks");
       const addBookmarkButton = document.getElementById("addBookmark");
 
@@ -1622,7 +1371,7 @@
 
       if (isMobile) {
         // Create a bookmark element
-        function createBookmarkElement(bookmark, index) {
+        window.createBookmarkElement = function (bookmark, index) {
           const { title, url } = bookmark;
           const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
           const bookmarkElement = document.createElement("div");
@@ -1814,9 +1563,9 @@
           });
 
           return bookmarkElement;
-        }
+        };
 
-        function renderBookmarks() {
+        window.renderBookmarks = function () {
           bookmarks.forEach((bookmark, index) => {
             const bookmarkElement = createBookmarkElement(bookmark, index);
             bookmarksContainer.appendChild(bookmarkElement);
@@ -1895,10 +1644,10 @@
               }
             },
           });
-        }
+        };
       } else {
         // Create a bookmark element
-        function createBookmarkElement(bookmark, index) {
+        window.createBookmarkElement = function (bookmark, index) {
           const { title, url } = bookmark;
           const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${url}`;
           const bookmarkElement = document.createElement("div");
@@ -2088,9 +1837,9 @@
           bookmarkElement.appendChild(deleteButton);
 
           return bookmarkElement;
-        }
+        };
 
-        function renderBookmarks() {
+        window.renderBookmarks = function () {
           bookmarks.forEach((bookmark, index) => {
             const bookmarkElement = createBookmarkElement(bookmark, index);
             bookmarksContainer.appendChild(bookmarkElement);
@@ -2148,27 +1897,27 @@
                 delayeDragTouchMoveHandler
               );
 
-              function delayeDragTouchMoveHandler(e) {
+              window.delayeDragTouchMoveHandler = function (e) {
                 // Start a timeout to trigger the event after a delay
                 timeoutId = setTimeout(function () {
                   // Your action here
                 }, 500); // 3000 milliseconds = 3 seconds
-              }
+              };
 
               // Disable drag handler for mouseup, touchend, and touchcancel
               event.item.addEventListener("mouseup", disableDelayedDrag);
               event.item.addEventListener("touchend", disableDelayedDrag);
               event.item.addEventListener("touchcancel", disableDelayedDrag);
 
-              function disableDelayedDrag(e) {
+              window.disableDelayedDrag = function (e) {
                 // If a timeout is ongoing, clear it
                 if (timeoutId) {
                   clearTimeout(timeoutId);
                 }
-              }
+              };
             },
           });
-        }
+        };
       }
       // Add bookmark
       // Add the event listener
@@ -2306,6 +2055,7 @@
       // Initial rendering
       renderBookmarks();
     </script>
+    <!-- <script type="module" src="/src/home-index.js"></script> -->
 
     <!-- <script src="/src/flowbite.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
