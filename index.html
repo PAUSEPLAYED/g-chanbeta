@@ -1,10 +1,19 @@
 <!doctype html>
 <html lang="en" class="dark scrollbar-hide">
   <head>
+    <title>G-chan Beta | PausePLayed</title>
+
     <!-- DARK MODE -->
+    <script>
+      // Check if dark mode should be enabled
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.documentElement.classList.add("dark");
+      } else if (localStorage.getItem("darkMode") === "disabled") {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
     
     <!-- DARK MODE -->
-    <title>G-chan Beta | PausePLayed</title>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -618,12 +627,15 @@
                 <ul id="dropdown-container11" class="relative py-2 space-y-2">
                   <!-- hidden -->
                   <li>
-                    <div class="relative flex items-center">
+                    <div
+                      class="relative flex items-center cursor-pointer"
+                      id="themeButton"
+                    >
                       <div
-                        id="toggleDark"
-                        class="toggler ml-5 rounded-full bg-neutral-300 w-20 dark:bg-neutral-700 cursor-pointer"
+                        class="ml-5 rounded-full bg-neutral-300 w-20 dark:bg-neutral-700 cursor-pointer"
                       >
                         <div
+                          id="themeCircle"
                           class="rounded-full bg-white w-10 h-10 scale-75 transition-transform dark:bg-neutral-900"
                         ></div>
                       </div>
@@ -636,13 +648,13 @@
                   <li>
                     <div
                       class="relative flex items-center cursor-pointer"
-                      id="randomizebutton"
+                      id="randomButton"
                     >
                       <div
                         class="ml-5 rounded-full bg-neutral-300 w-20 dark:bg-neutral-700 checked:"
                       >
                         <div
-                          id="randomcircle"
+                          id="randomCircle"
                           class="rounded-full bg-white w-10 h-10 scale-75 transition-transform dark:bg-neutral-900"
                         ></div>
                       </div>
