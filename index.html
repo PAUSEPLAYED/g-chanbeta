@@ -527,6 +527,7 @@
         </h5>
 
         <button
+          id="closeNavi"
           onclick="toggleSlideover()"
           type="button"
           data-drawer-hide="drawernavi"
@@ -551,13 +552,13 @@
         <!--           class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[315px] md:top-[330px] sm:right-4 md:right-7 inline-flex items-center z-[50]" -->
         <div
           id="collapseDiv"
-          class="sticky h-0 pointer-events-auto top-[265px] sm:float-right sm:mr-[10px] sm:top-[345px] md:ml-[255px] items-center z-[50]"
+          class="sticky h-0 pointer-events-auto sm:top-[501px] md:top-1/2 sm:float-right sm:mr-[10px] md:ml-[255px] items-center z-10"
         >
           <button
             id="collapseButton"
             onclick="toggleCollapse()"
             type="button"
-            class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[265px] md:top-[280px] sm:right-4 md:right-7 inline-flex items-center z-[50]"
+            class="fixed bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white rounded-full text-md p-1.5 sm:top-[501px] md:top-[210px] sm:right-4 md:right-7 inline-flex items-center z-10"
           >
             <svg
               aria-hidden="true"
@@ -580,7 +581,7 @@
             id="uncollapseButton"
             onclick="untoggleCollapse()"
             type="button"
-            class="sticky hidden rotate-180 bg-neutral-300/20 dark:bg-neutral-700/20 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white backdrop-blur drop-shadow-lg rounded-full text-md p-1.5 z-[50]"
+            class="sticky hidden rotate-180 sm:top-[501px] transform md:-translate-y-1/2 bg-neutral-300/20 dark:bg-neutral-700/20 dark:hover:bg-neutral-800 hover:bg-neutral-100 dark:text-white text-neutral-900 hover:text-neutral-900 dark:hover:text-white backdrop-blur drop-shadow-lg rounded-full text-md p-1.5 z-10"
           >
             <svg
               aria-hidden="true"
@@ -603,13 +604,13 @@
         <div class="py-4 overflow-y-auto">
           <ul class="relative space-y-2 font-medium sm:p-2 md:p-4">
             <!-- FAQS -->
-            <div class="bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
+            <div class="bg-white/20 rounded-[20px] dark:bg-neutral-800/20 z-20">
               <li>
                 <button
                   type="button"
                   class="flex items-center w-full p-2 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container0"
-                  data-collapse-toggle="dropdown-container0"
+                  aria-controls="dropdownContainer0"
+                  data-collapse-toggle="dropdownContainer0"
                 >
                   <span
                     class="flex-1 ml-3 text-left whitespace-nowrap font-semibold"
@@ -629,7 +630,7 @@
                 </button>
 
                 <ul
-                  id="dropdown-container0"
+                  id="dropdownContainer0"
                   class="relative hidden mx-2 py-2 space-y-2"
                 >
                   <li>
@@ -664,8 +665,13 @@
                         <p class="font-bold">Desktop Installation:</p>
                         <ul>
                           <li>
-                            ●If you're using chrome-based Browser eg: Brave,
-                            Edge or Chrome:
+                            ●For chrome-based Browsers eg: Brave, Edge or
+                            Chrome:
+                          </li>
+                          <li>
+                            ●Due to age restrictions, sign in to your google
+                            account first before you visit the Chrome Webstore
+                            Link Below
                           </li>
                           <li>
                             ●Visit:
@@ -678,10 +684,6 @@
                             >
                           </li>
                           <li>●Install Extension</li>
-                          <li>
-                            ●Note: Due to age restrictions, Google might ask you
-                            to log-in
-                          </li>
                         </ul>
                       </li>
                     </ul>
@@ -735,11 +737,11 @@
                 <button
                   type="button"
                   class="flex items-center w-full p-2 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container11"
-                  data-collapse-toggle="dropdown-container11"
+                  aria-controls="dropdownContainer11"
+                  data-collapse-toggle="dropdownContainer11"
                 >
-                  <!-- aria-controls="dropdown-container11"
-                data-collapse-toggle="dropdown-container11" -->
+                  <!-- aria-controls="dropdownContainer11"
+                data-collapse-toggle="dropdownContainer11" -->
                   <span
                     class="flex-1 ml-3 text-left whitespace-nowrap font-semibold"
                     >Settings</span
@@ -765,7 +767,7 @@
                 </button>
 
                 <ul
-                  id="dropdown-container11"
+                  id="dropdownContainer11"
                   class="relative hidden py-2 space-y-2"
                 >
                   <!-- hidden -->
@@ -834,10 +836,11 @@
             <div class="bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
+                  id="buttonC1"
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container1"
-                  data-collapse-toggle="dropdown-container1"
+                  aria-controls="dropdownContainer1"
+                  data-collapse-toggle="dropdownContainer1"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Hololive Vtuber/s</span
@@ -849,7 +852,7 @@
                 </button>
 
                 <ul
-                  id="dropdown-container1"
+                  id="dropdownContainer1"
                   class="relative hidden py-2 space-y-2"
                 >
                   <div id="bg-images" data-number="26">
@@ -874,10 +877,11 @@
             >
               <li>
                 <button
+                  id="buttonC2"
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container2"
-                  data-collapse-toggle="dropdown-container2"
+                  aria-controls="dropdownContainer2"
+                  data-collapse-toggle="dropdownContainer2"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >EN Vtubers Anime</span
@@ -888,7 +892,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container2"
+                  id="dropdownContainer2"
                   class="relative hidden py-2 space-y-2"
                 >
                   <div id="bg-images" data-number="26" class="group">
@@ -954,10 +958,11 @@
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
+                  id="buttonC3"
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container3"
-                  data-collapse-toggle="dropdown-container3"
+                  aria-controls="dropdownContainer3"
+                  data-collapse-toggle="dropdownContainer3"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Merryweather OC</span
@@ -968,7 +973,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container3"
+                  id="dropdownContainer3"
                   class="relative hidden py-2 space-y-2"
                 >
                   <div id="bg-images" data-number="26">
@@ -1045,10 +1050,11 @@
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
+                  id="buttonC4"
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container4"
-                  data-collapse-toggle="dropdown-container4"
+                  aria-controls="dropdownContainer4"
+                  data-collapse-toggle="dropdownContainer4"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Internet Waifus</span
@@ -1059,7 +1065,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container4"
+                  id="dropdownContainer4"
                   class="relative hidden py-2 space-y-2"
                 >
                   <div id="bg-images" data-number="26">
@@ -1180,10 +1186,11 @@
             <div class="-p-0 bg-white/20 rounded-[20px] dark:bg-neutral-800/20">
               <li>
                 <button
+                  id="buttonC5"
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container5"
-                  data-collapse-toggle="dropdown-container5"
+                  aria-controls="dropdownContainer5"
+                  data-collapse-toggle="dropdownContainer5"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Derivatives ⟠</span
@@ -1194,7 +1201,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container5"
+                  id="dropdownContainer5"
                   class="relative hidden py-2 space-y-2"
                 >
                   <div id="bg-images" data-number="26">
@@ -1253,8 +1260,8 @@
                 <button
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container6"
-                  data-collapse-toggle="dropdown-container6"
+                  aria-controls="dropdownContainer6"
+                  data-collapse-toggle="dropdownContainer6"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Exclusive Versions</span
@@ -1265,7 +1272,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container6"
+                  id="dropdownContainer6"
                   class="relative justify-center items-center hidden py-2 space-y-2"
                 >
                   <li>
@@ -1293,8 +1300,8 @@
                 <button
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container7"
-                  data-collapse-toggle="dropdown-container7"
+                  aria-controls="dropdownContainer7"
+                  data-collapse-toggle="dropdownContainer7"
                 >
                   <span class="absolute font-bold left-0 ml-5"
                     >Version Log</span
@@ -1305,13 +1312,13 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container7"
+                  id="dropdownContainer7"
                   class="relative hidden py-2 space-y-2"
                 >
                   <li
                     class="w-full text-base text-justify text-neutral-900 transition duration-75 rounded-lg p-[20px] group dark:text-white"
                   >
-                    1.20 (02/29/2024)<br />
+                    1.20 (03/--/2024)<br />
                     <ul class="p-2">
                       <li>Soft Launch of website</li>
                       <li>Added Draggable URL Shortcuts</li>
@@ -1373,8 +1380,8 @@
                 <button
                   type="button"
                   class="relative w-full flex items-center p-2 h-11 text-base text-neutral-900 transition duration-75 rounded-full group hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-800"
-                  aria-controls="dropdown-container8"
-                  data-collapse-toggle="dropdown-container8"
+                  aria-controls="dropdownContainer8"
+                  data-collapse-toggle="dropdownContainer8"
                 >
                   <span class="absolute font-bold left-0 ml-5">About</span>
                   <span
@@ -1383,7 +1390,7 @@
                   >
                 </button>
                 <ul
-                  id="dropdown-container8"
+                  id="dropdownContainer8"
                   class="relative hidden py-2 space-y-2"
                 >
                   <li
