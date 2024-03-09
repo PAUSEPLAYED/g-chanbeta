@@ -11,16 +11,24 @@
       } else if (localStorage.getItem("darkMode") === "disabled") {
         document.documentElement.classList.remove("dark");
       }
-      document.addEventListener("DOMContentLoaded", function () {
-        // Check if bookmarks should be shown
-        if (localStorage.getItem("showBookmarks") === "enabled") {
-          document.getElementById("addButton").style.display = "block";
-          document.getElementById("div3").style.display = "block";
-        } else if (localStorage.getItem("showBookmarks") === "disabled") {
-          document.getElementById("addButton").style.display = "none";
-          document.getElementById("div3").style.display = "none";
-        }
-      });
+
+      if (localStorage.getItem("incogni") === "enabled") {
+        $("#background").css("visibility", "hidden");
+        document.getElementById("hidebackground").classList.remove("hidden");
+      } else if (localStorage.getItem("incogni") === "disabled") {
+        $("#background").css("visibility", "visible");
+        document.getElementById("hidebackground").classList.add("hidden");
+      }
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   // // Check if bookmarks should be shown
+      //   // if (localStorage.getItem("showBookmarks") === "enabled") {
+      //   //   document.getElementById("addButton").style.display = "block";
+      //   //   document.getElementById("div3").style.display = "block";
+      //   // } else if (localStorage.getItem("showBookmarks") === "disabled") {
+      //   //   document.getElementById("addButton").style.display = "none";
+      //   //   document.getElementById("div3").style.display = "none";
+      //   // }
+      // });
     </script>
     
     <!-- DARK MODE -->
@@ -280,7 +288,37 @@
             id="background"
             class="bg-center mb:h-auto md:-mb-[40px] md:scale-[1.5] 1xl:scale-[1.7] 1xl:-mt-[60px] mx-auto sm:w-screen md:w-[500px] bg-no-repeat ease-out duration-300"
           ></div>
-
+          <div
+            id="hidebackground"
+            class="absolute hidden inset-0 items-center justify-center z-0"
+          >
+            <div
+              class="absolute top-1/2 left-1/2 md:mt-[50px] -ml-2 h-8 w-4 scale-[2.5] text-neutral-200 dark:text-neutral-800 drop-shadow-md"
+            >
+              <div class="absolute z-10 -ml-2 h-8 w-8 animate-bounce">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="animate-spin"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 0c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM8 4c2.209 0 4 1.791 4 4s-1.791 4-4 4-4-1.791-4-4 1.791-4 4-4zM12.773 12.773c-1.275 1.275-2.97 1.977-4.773 1.977s-3.498-0.702-4.773-1.977-1.977-2.97-1.977-4.773c0-1.803 0.702-3.498 1.977-4.773l1.061 1.061c0 0 0 0 0 0-2.047 2.047-2.047 5.378 0 7.425 0.992 0.992 2.31 1.538 3.712 1.538s2.721-0.546 3.712-1.538c2.047-2.047 2.047-5.378 0-7.425l1.061-1.061c1.275 1.275 1.977 2.97 1.977 4.773s-0.702 3.498-1.977 4.773z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="absolute top-4 h-5 w-4 animate-bounce border-l-2 drop-shadow-lg border-neutral-500 dark:border-neutral-900"
+                style="rotate: -90deg"
+              ></div>
+              <div
+                class="absolute top-4 h-5 w-4 animate-bounce border-r-2 drop-shadow-lg border-neutral-500 dark:border-neutral-900"
+                style="rotate: 90deg"
+              ></div>
+            </div>
+          </div>
           <div
             id="preloader"
             class="absolute inset-0 items-center justify-center"
@@ -327,9 +365,7 @@
           <div
             class="absolute grid grid-rows-5 gap-[8px] sm:w-screen md:w-[650px] sm:left-0 sm:pb-[50px] pointer-events-none"
           >
-            <div
-              class="flex right-0 h-[50px] w-[50px] sm:w-[100%] pointer-events-auto"
-            >
+            <div class="flex right-0 h-[50px] w-[50px] pointer-events-auto">
               <button
                 id="heartRandom"
                 onclick="toggleStopRandom()"
@@ -351,7 +387,7 @@
 
             <div
               id="searchbar"
-              class="sm:flex sm:mt-[0px] md:mt-[0px] sm:w-[100%] md:w-[650px] pointer-events-auto"
+              class="sm:flex sm:mt-[0px] md:mt-[0px] md:w-[650px] pointer-events-auto"
             >
               <!-- md:max-w-[600px] -->
               <form
@@ -367,13 +403,13 @@
                     name="q"
                     placeholder="Search G-chan or type a Waifu"
                     spellcheck="false"
-                    class="z-3 sm:w-screen md:w-[650px] h-14 cursor-text rounded-full pl-16 pr-16 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
+                    class="z-3 sm:w-screen md:w-[650px] h-[52px] cursor-text rounded-full pl-16 pr-16 hover:ease-in focus:ease-in duration-0 dark:bg-neutral-800 bg-neutral-200 dark:hover:bg-neutral-600 hover:bg-neutral-50 dark:focus:bg-neutral-600 focus:bg-neutral-0 dark:text-neutral-50 text-neutral-950 hover:drop-shadow-lg hover:outline-none focus:drop-shadow-lg focus:outline-none placeholder-text-neutral-500 search-cancel:appearance-none search-cancel search-cancel-hover:bg-neutral-600"
                   />
 
                   <button
                     id="settings-button"
                     type="button"
-                    class="absolute pt-2 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
+                    class="absolute pt-1.5 left-2 h-12 w-12 hover:ease-out focus:ease-out duration-[300ms] dark:text-neutral-900 text-neutral-400 bg-transparent hover:text-neutral-900 dark:hover:text-white"
                   >
                     <svg
                       onclick="toggleSlideover()"
@@ -395,7 +431,7 @@
               </form>
               <button
                 id="searchClearButton"
-                class="absolute justify-center items-center mt-1 pb-1.5 pl-2 right-1 h-12 w-12 rounded-full hover:ease-out focus:ease-out duration-[300ms] dark:bg-neutral-900 bg-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-950 dark:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                class="absolute justify-center items-center mt-1 pb-1 pl-2 right-1 h-11 w-11 rounded-full hover:ease-out focus:ease-out duration-[300ms] dark:bg-neutral-900 bg-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-950 dark:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
               >
                 <!-- Magnifying glass SVG -->
                 <svg
@@ -431,8 +467,8 @@
                 </svg>
               </button>
             </div>
-            <div class="col-span-0"></div>
-            <div class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto">
+            <!-- <div class="cols-span-0"></div> -->
+            <div class="flex h-auto w-[50px] pointer-events-auto">
               <button
                 id="addButton"
                 onclick="addmodal()"
@@ -457,7 +493,38 @@
                 <span class="sr-only">Close menu</span>
               </button>
             </div>
-            <div class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto">
+            <div class="flex h-auto w-[50px] pointer-events-auto">
+              <button
+                id="incogButton"
+                onclick="toggleIncogni()"
+                type="button"
+                class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
+              >
+                <svg
+                  fill="none"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  id="Layer_1"
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  transform="matrix(-1, 0, 0, 1, 0, 0)"
+                >
+                  <path
+                    id="Vector"
+                    d="M3.99989 4L19.9999 20M16.4999 16.7559C15.1473 17.4845 13.6185 17.9999 11.9999 17.9999C8.46924 17.9999 5.36624 15.5478 3.5868 13.7788C3.1171 13.3119 2.88229 13.0784 2.7328 12.6201C2.62619 12.2933 2.62616 11.7066 2.7328 11.3797C2.88233 10.9215 3.11763 10.6875 3.58827 10.2197C4.48515 9.32821 5.71801 8.26359 7.17219 7.42676M19.4999 14.6335C19.8329 14.3405 20.138 14.0523 20.4117 13.7803L20.4146 13.7772C20.8832 13.3114 21.1182 13.0779 21.2674 12.6206C21.374 12.2938 21.3738 11.7068 21.2672 11.38C21.1178 10.9219 20.8827 10.6877 20.4133 10.2211C18.6338 8.45208 15.5305 6 11.9999 6C11.6624 6 11.3288 6.02241 10.9999 6.06448M13.3228 13.5C12.9702 13.8112 12.5071 14 11.9999 14C10.8953 14 9.99989 13.1046 9.99989 12C9.99989 11.4605 10.2135 10.9711 10.5608 10.6113"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+
+                <span class="sr-only">Share</span>
+              </button>
+            </div>
+
+            <div class="flex h-auto w-[50px] pointer-events-auto">
               <button
                 id="shareButton"
                 type="button"
@@ -472,17 +539,9 @@
                   data-name="Layer 1"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M21.707,11.293l-8-8A.99991.99991,0,0,0,12,4V7.54492A11.01525,11.01525,0,0,0,2,18.5V20a1,1,0,0,0,1.78418.62061,11.45625,11.45625,0,0,1,7.88672-4.04932c.0498-.00635.1748-.01611.3291-.02588V20a.99991.99991,0,0,0,1.707.707l8-8A.99962.99962,0,0,0,21.707,11.293ZM14,17.58594V15.5a.99974.99974,0,0,0-1-1c-.25488,0-1.2959.04932-1.56152.085A14.00507,14.00507,0,0,0,4.05176,17.5332,9.01266,9.01266,0,0,1,13,9.5a.99974.99974,0,0,0,1-1V6.41406L19.58594,12Z"
-                    ></path>
-                  </g>
+                  <path
+                    d="M21.707,11.293l-8-8A.99991.99991,0,0,0,12,4V7.54492A11.01525,11.01525,0,0,0,2,18.5V20a1,1,0,0,0,1.78418.62061,11.45625,11.45625,0,0,1,7.88672-4.04932c.0498-.00635.1748-.01611.3291-.02588V20a.99991.99991,0,0,0,1.707.707l8-8A.99962.99962,0,0,0,21.707,11.293ZM14,17.58594V15.5a.99974.99974,0,0,0-1-1c-.25488,0-1.2959.04932-1.56152.085A14.00507,14.00507,0,0,0,4.05176,17.5332,9.01266,9.01266,0,0,1,13,9.5a.99974.99974,0,0,0,1-1V6.41406L19.58594,12Z"
+                  ></path>
                 </svg>
 
                 <span class="sr-only">Share</span>
@@ -2089,6 +2148,19 @@
                 clearTimeout(sortTimeoutId);
               }
 
+              window.delayeDragTouchMoveHandler = function (e) {
+                // Start a timeout to trigger the event after a delay
+                timeoutId = setTimeout(function () {
+                  // Your action here
+                }, 500); // 3000 milliseconds = 3 seconds
+              };
+              window.disableDelayedDrag = function (e) {
+                // If a timeout is ongoing, clear it
+                if (timeoutId) {
+                  clearTimeout(timeoutId);
+                }
+              };
+
               // Delayed drag handler for mousemove and touchmove
               event.item.addEventListener(
                 "mousemove",
@@ -2103,24 +2175,10 @@
                 delayeDragTouchMoveHandler
               );
 
-              window.delayeDragTouchMoveHandler = function (e) {
-                // Start a timeout to trigger the event after a delay
-                timeoutId = setTimeout(function () {
-                  // Your action here
-                }, 500); // 3000 milliseconds = 3 seconds
-              };
-
               // Disable drag handler for mouseup, touchend, and touchcancel
               event.item.addEventListener("mouseup", disableDelayedDrag);
               event.item.addEventListener("touchend", disableDelayedDrag);
               event.item.addEventListener("touchcancel", disableDelayedDrag);
-
-              window.disableDelayedDrag = function (e) {
-                // If a timeout is ongoing, clear it
-                if (timeoutId) {
-                  clearTimeout(timeoutId);
-                }
-              };
             },
           });
         };
