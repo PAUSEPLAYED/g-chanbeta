@@ -44,7 +44,7 @@
     <meta property="og:description" content="G-chan Beta WebSite" />
     <meta property="og:image" content="https://i.imgur.com/iQH1RgJ.jpg" />
 
-    <link rel="icon" type="image/svg+xml" href="./xbutton.svg" />
+    <link rel="icon" type="img" href="https://i.ibb.co/486vxhK/icon128.png" />
     <!-- <link rel="icon" type="image/svg+xml" href="/xbutton.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -94,7 +94,7 @@
           </button>
           <div class="p-4 md:p-5 text-center">
             <svg
-              class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+              class="mx-auto mb-4 text-gray-400 w-10 h-10 dark:text-gray-200"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -105,7 +105,7 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
               />
             </svg>
             <h3
@@ -322,10 +322,10 @@
 
         <div
           id="div2"
-          class="absolute z-10 flex items-center justify-center md:pl-[250px] md:pt-[73px] pointer-events-none"
+          class="absolute z-10 flex items-center justify-center sm:pt-[30px] md:pl-[250px] md:pt-[100px] pointer-events-none"
         >
           <div
-            class="absolute grid grid-rows-4 gap-[8px] sm:w-screen md:w-[650px] sm:left-0 sm:pb-[50px] pointer-events-none"
+            class="absolute grid grid-rows-5 gap-[8px] sm:w-screen md:w-[650px] sm:left-0 sm:pb-[50px] pointer-events-none"
           >
             <div
               class="flex right-0 h-[50px] w-[50px] sm:w-[100%] pointer-events-auto"
@@ -440,19 +440,52 @@
                 class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-md p-1.5 right-0 items-center z-20"
               >
                 <svg
-                  aria-hidden="true"
-                  class="w-[40px] h-[40px] rotate-45"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
                   <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
                   ></path>
                 </svg>
                 <span class="sr-only">Close menu</span>
+              </button>
+            </div>
+            <div class="flex h-auto sm:w-[100%] w-[50px] pointer-events-auto">
+              <button
+                id="shareButton"
+                type="button"
+                class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
+              >
+                <svg
+                  fill="currentColor"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  id="Layer_1"
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M21.707,11.293l-8-8A.99991.99991,0,0,0,12,4V7.54492A11.01525,11.01525,0,0,0,2,18.5V20a1,1,0,0,0,1.78418.62061,11.45625,11.45625,0,0,1,7.88672-4.04932c.0498-.00635.1748-.01611.3291-.02588V20a.99991.99991,0,0,0,1.707.707l8-8A.99962.99962,0,0,0,21.707,11.293ZM14,17.58594V15.5a.99974.99974,0,0,0-1-1c-.25488,0-1.2959.04932-1.56152.085A14.00507,14.00507,0,0,0,4.05176,17.5332,9.01266,9.01266,0,0,1,13,9.5a.99974.99974,0,0,0,1-1V6.41406L19.58594,12Z"
+                    ></path>
+                  </g>
+                </svg>
+
+                <span class="sr-only">Share</span>
               </button>
             </div>
           </div>
