@@ -368,9 +368,11 @@
                 id="heartRandom"
                 onclick="toggleStopRandom()"
                 type="button"
-                class="absolute z-20 pt-[2.5px] pl-[2px] sm:-right-[0] md:right-0 h-[52px] w-[52px] hover:ease-out focus:ease-out duration-[300ms] sm:rounded-tl-full sm:rounded-bl-full backdrop-blur md:rounded-full sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800 bg-neutral-200 b hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 sm:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+                class="absolute z-20 pt-[2.5px] pl-[2px] sm:-right-[0] md:right-0 h-[52px] w-[52px] hover:ease-out focus:ease-out duration-[300ms] sm:rounded-tl-full sm:rounded-bl-full backdrop-blur md:rounded-full sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 sm:text-neutral-500 text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
               >
                 <svg
+                  id="heartSVG"
+                  class="transition-transform duration-500 ease-in-out transform"
                   aria-hidden="true"
                   fill="currentColor"
                   viewBox="0 0 25 25"
@@ -454,7 +456,7 @@
                   fill="none"
                   viewBox="0 0 19 19"
                   stroke="currentColor"
-                  class="h-6 w-6 hidden"
+                  class="h-6 w-6 mb-1 pr-[2px] hidden"
                 >
                   <path
                     stroke-linecap="round"
@@ -496,7 +498,7 @@
                 id="incogButton"
                 onclick="toggleIncogni()"
                 type="button"
-                class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
+                class="absolute hover:ease-out duration-[300ms] sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
               >
                 <svg
                   fill="none"
@@ -527,9 +529,11 @@
                 id="shareButton"
                 onclick="toggleShare()"
                 type="button"
-                class="absolute sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
+                class="absolute hover:ease-out duration-[300ms] sm:dark:bg-neutral-800/20 sm:bg-neutral-200/20 dark:bg-neutral-800/20 bg-neutral-200/20 backdrop-blur hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-900 text-neutral-500 hover:text-neutral-900 dark:hover:text-white sm:rounded-s-full md:rounded-full text-sm p-1.5 right-0 items-center z-20"
               >
                 <svg
+                  id="shareSVG"
+                  class="transition-transform duration-500 ease-in-out transform"
                   fill="currentColor"
                   width="40"
                   height="40"
@@ -551,7 +555,7 @@
               >
                 <!-- FACEBOOK -->
                 <a
-                  class="fb-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-700"
+                  class="fb-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-700 hover:scale-[1.2] hover:ease-in-out duration-[300ms]"
                   onclick="return fbs_click()"
                   target="_blank"
                 >
@@ -563,7 +567,7 @@
 
                 <!-- TWITTER -->
                 <a
-                  class="tw-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-400"
+                  class="tw-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-400 hover:scale-[1.2] hover:ease-in-out duration-[300ms]"
                   onclick="return tbs_click()"
                   target="_blank"
                 >
@@ -575,7 +579,7 @@
 
                 <!-- LINKEDIN -->
                 <a
-                  class="li-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-800"
+                  class="li-h rounded-full w-12 h-12 p-2 cursor-pointer bg-blue-800 hover:scale-[1.2] hover:ease-in-out duration-[300ms]"
                   onclick="return lbs_click()"
                   target="_blank"
                 >
@@ -587,7 +591,7 @@
 
                 <!-- REDDIT -->
                 <a
-                  class="re-h rounded-full w-12 h-12 p-2 cursor-pointer bg-orange-600"
+                  class="re-h rounded-full w-12 h-12 p-2 cursor-pointer bg-orange-600 hover:scale-[1.2] hover:ease-in-out duration-[300ms]"
                   onclick="return rbs_click()"
                   target="_blank"
                 >
@@ -601,7 +605,7 @@
                 <a
                   data-pin-do="buttonPin"
                   data-pin-config="none"
-                  class="pi-h rounded-full w-12 h-12 p-2 cursor-pointer bg-red-700"
+                  class="pi-h rounded-full w-12 h-12 p-2 cursor-pointer bg-red-700 hover:scale-[1.2] hover:ease-in-out duration-[300ms]"
                   onclick="return pbs_click()"
                   target="_blank"
                 >
